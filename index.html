@@ -267,7 +267,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcbSkUQMpDgmA9XzfyXH2LqLGy3S2tCCBkGPgrI1J2KftSAgJ8b3OkhfaPDD-_gWNZ/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyvCI6jx3zNwGH49Jy-lFicSJyKOnvt9ehwNofV3ecmmbEqtXmJf8XcmXhr4sgqzTo/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -517,32 +517,16 @@
       }).join("");
 
       let detallePuntosFlippity = [];
-      (est.fechas || []).forEach(f => {
-        const txt = String(f.codigo || "").toUpperCase();
-        
-        // Limpiamos cualquier caracter extraño y detectamos si hay un cero o asistencia
-        const esAsistencia = txt === "0" || txt === "O" || txt.includes("0") || txt.includes("O") || txt.includes("⃠") || txt.length === 0 && !txt.includes("2") && !txt.includes("U");
 
-        if (esAsistencia || txt.includes("0") || txt.includes("O")) {
-          detallePuntosFlippity.push({ motivo: `Asistencia a clase (${f.codigo})`, puntos: "+1", tipo: "positivo", fecha: f.fecha });
-          if (!txt.includes("U")) {
-            detallePuntosFlippity.push({ motivo: "Bono Uniforme Impecable", puntos: "+5", tipo: "positivo", fecha: f.fecha });
-          }
-        }
-        if (txt.includes("2")) {
-          detallePuntosFlippity.push({ motivo: "Inasistencia sin excusa", puntos: "-1", tipo: "negativo", fecha: f.fecha });
-        }
-        if (txt.includes("U")) {
-          detallePuntosFlippity.push({ motivo: "Falla de Uniforme", puntos: "-5", tipo: "negativo", fecha: f.fecha });
-        }
-        if (txt.includes("R")) {
-          detallePuntosFlippity.push({ motivo: "Retardo / Llegada tarde", puntos: "-5", tipo: "negativo", fecha: f.fecha });
-        }
-        if (txt.includes("E")) {
-          detallePuntosFlippity.push({ motivo: "Evasión de clase", puntos: "-20", tipo: "negativo", fecha: f.fecha });
-        }
-      });
+      // 1. Agregamos todos los conceptos y puntos directos de la tabla de Excel de Drive
+      if (est.desglosesTabla && est.desglosesTabla.length > 0) {
+        detallePuntosFlippity = [...est.desglosesTabla];
+      }
 
+      // 2. Agregamos el desglose detallado de asistencia y uniforme
+      if (est.desglosesAsistencia && est.desglosesAsistencia.length > 0) {
+        detallePuntosFlippity = [...detallePuntosFlippity, ...est.desglosesAsistencia];
+      }
       const listaDescuentos = est.historialConvivencia || [];
       listaDescuentos.forEach(d => {
         detallePuntosFlippity.push({ motivo: d.motivo, puntos: `${d.puntos}`, tipo: "negativo", fecha: d.fecha || "Periodo" });
