@@ -580,16 +580,17 @@
     }
 
     // =========================================================================
-    // 6. MODAL DETALLADO DE JUGADOR
+    // 6. MODAL DETALLADO ESTILO FLIPPITY (Desglose de puntos y motivos)
     // =========================================================================
     function abrirModal(id) {
       const est = estudiantes.find(e => e.id === id);
       if (!est) return;
       const stats = calcularEstadisticas(est);
 
-      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota: ${(est.nota || 4.5).toFixed(1)}`;
+      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${(est.nota || 4.5).toFixed(1)}`;
       document.getElementById("modalNombre").textContent = est.nombre;
 
+      // 1. Historial de Asistencia y sus puntos asociados
       const historialFechasHTML = (est.fechas || []).map(f => {
         const colores = {
           "0": "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
@@ -600,28 +601,68 @@
           "E": "bg-purple-500/20 text-purple-300 border-purple-500/40"
         };
         return `
-          <div class="px-2.5 py-1.5 rounded-lg border text-center ${colores[f.codigo] || 'bg-slate-800'}">
+          <div class="px-2.5 py-1.5 rounded-lg border text-center ${colores[f.codigo[0]] || 'bg-slate-800'}">
             <div class="text-[10px] opacity-75">${f.fecha}</div>
             <div class="font-gamer text-xs font-bold">${f.codigo}</div>
           </div>
         `;
       }).join("");
 
+      // 2. Consolidado estilo Flippity: Lista de puntos por motivo (Asistencia, Uniforme, Retos, Convivencia)
+      let detallePuntosFlippity = [];
+
+      // Sumar motivos de asistencia y uniforme basados en sus fechas
+      (est.fechas || []).forEach(f => {
+        const txt = f.codigo.toUpperCase();
+        if (txt.includes("0")) {
+          detallePuntosFlippity.push({ motivo: `Asistencia a clase (${f.codigo})`, puntos: "+1", tipo: "positivo", fecha: f.fecha });
+          if (!txt.includes("U")) {
+            detallePuntosFlippity.push({ motivo: "Bono Uniforme Impecable", puntos: "+5", tipo: "positivo", fecha: f.fecha });
+          }
+        }
+        if (txt.includes("2")) {
+          detallePuntosFlippity.push({ motivo: "Inasistencia sin excusa", puntos: "-1", tipo: "negativo", fecha: f.fecha });
+        }
+        if (txt.includes("U")) {
+          detallePuntosFlippity.push({ motivo: "Falla de Uniforme", puntos: "-5", tipo: "negativo", fecha: f.fecha });
+        }
+        if (txt.includes("R")) {
+          detallePuntosFlippity.push({ motivo: "Retardo / Llegada tarde", puntos: "-5", tipo: "negativo", fecha: f.fecha });
+        }
+        if (txt.includes("E")) {
+          detallePuntosFlippity.push({ motivo: "Evasión de clase", puntos: "-20", tipo: "negativo", fecha: f.fecha });
+        }
+      });
+
+      // Agregar retos y aciertos si los hay
+      if ((est.retosCompletados || 0) > 0) {
+        detallePuntosFlippity.push({ motivo: `Retos lógicos completados (${est.retosCompletados})`, puntos: `+${est.retosCompletados * 5}`, tipo: "positivo", fecha: "Periodo" });
+      }
+      if ((est.vecesAlFrente || 0) > 0) {
+        detallePuntosFlippity.push({ motivo: `Exposición / Pasó al frente (${est.vecesAlFrente} veces)`, puntos: `+${est.vecesAlFrente * 5}`, tipo: "positivo", fecha: "Periodo" });
+      }
+
+      // Agregar reportes de convivencia e historial de descuentos
       const listaDescuentos = est.historialConvivencia || [];
-      const descuentosHTML = listaDescuentos.length === 0
-        ? `<p class="text-xs text-emerald-400 font-semibold">✨ ¡Impecable! Sin reportes de convivencia.</p>`
-        : `<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            ${listaDescuentos.map(d => `
-              <div class="p-2.5 rounded-xl bg-rose-950/30 border border-rose-700/40 flex justify-between items-center">
+      listaDescuentos.forEach(d => {
+        detallePuntosFlippity.push({ motivo: d.motivo, puntos: `${d.puntos}`, tipo: "negativo", fecha: d.fecha || "Periodo" });
+      });
+
+      const desgloseFlippityHTML = detallePuntosFlippity.length === 0
+        ? `<p class="text-xs text-slate-400">Aún no hay registros de puntajes detallados.</p>`
+        : `<div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            ${detallePuntosFlippity.map(item => `
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex justify-between items-center text-xs">
                 <div>
-                  <div class="text-xs font-bold text-rose-300">${d.motivo}</div>
-                  <div class="text-[11px] text-slate-400">📅 ${d.fecha}</div>
+                  <span class="font-semibold text-white">${item.motivo}</span>
+                  <span class="text-[10px] text-slate-400 ml-2">📅 ${item.fecha}</span>
                 </div>
-                <span class="font-gamer text-xs font-extrabold px-2 py-1 rounded bg-rose-500/20 text-rose-300">${d.puntos} pts</span>
+                <span class="font-gamer font-bold px-2 py-0.5 rounded ${item.tipo === 'positivo' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${item.puntos} pts</span>
               </div>
             `).join("")}
            </div>`;
 
+      // 3. Renderizado de Insignias
       const detalleInsignias = DEFINICION_INSIGNIAS.map(ins => {
         const activa = ins.evaluar(est, stats);
         return `
@@ -637,15 +678,29 @@
         `;
       }).join("");
 
+      // Estructura visual del Modal
       document.getElementById("modalContenido").innerHTML = `
+        <div class="flex justify-between items-center p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div>
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Total Acumulado</p>
+            <p class="font-gamer text-2xl font-extrabold text-amber-400 mt-0.5">🪙 ${est.coins} Techno Coins</p>
+          </div>
+          <div class="text-right">
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Nivel de Vida</p>
+            <p class="font-gamer text-sm font-bold text-rose-400 mt-0.5">${stats.corazonesTotales.toFixed(2)} ❤️</p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs font-bold uppercase text-slate-400">📋 Desglose de Puntos por Motivo (Estilo Flippity)</p>
+          ${desgloseFlippityHTML}
+        </div>
+
         <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
-          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Asistencia (Drive)</p>
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Historial de Asistencia y Códigos</p>
           <div class="flex flex-wrap gap-2">${historialFechasHTML.length ? historialFechasHTML : '<span class="text-xs text-slate-400">Sin registros recientes</span>'}</div>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
-          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Descuentos y Reportes</p>
-          ${descuentosHTML}
-        </div>
+
         <div>
           <p class="text-xs font-bold uppercase text-slate-400 mb-2">Estado de las Insignias</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">${detalleInsignias}</div>
@@ -656,13 +711,7 @@
       modal.classList.remove("hidden");
       modal.classList.add("flex");
     }
-
-    function cerrarModal() {
-      const modal = document.getElementById("modalEstudiante");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
+    
     // =========================================================================
     // 7. SIMULADOR EN CLASE
     // =========================================================================
