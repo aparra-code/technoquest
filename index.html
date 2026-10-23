@@ -267,7 +267,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyPATU97P5K1lPnhUdi45IzYyzCy0AWJdY-AFrsQuXrI5JgqLaZmWgvhcQHeg0-GEZT/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw33Hb8CPmX2oQuJsDqzdvnleeJfxpDzwytxPLrj3IKASOJi3-VpUG4VmHZLZcJCQD0/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -307,8 +307,8 @@
 
     let cursoActual = "TODOS";
 
-    // =========================================================================
-    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (CON SOPORTE PARA "0" Y TABLA COMPLETA)
+// =========================================================================
+    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (SIN DOBLE SUMA)
     // =========================================================================
     function calcularEstadisticas(est) {
       let asistencias = 0;      
@@ -322,22 +322,20 @@
       (est.fechas || []).forEach(reg => {
         const txt = String(reg.codigo || "").toUpperCase().trim();
         
-        const esAsistenciaPura = txt === "0" || txt === "O";
-        const tieneAsistencia = txt.includes("0") || txt.includes("O");
+        const esAsistenciaPura = txt === "0" || txt === "O" || txt === "⃠";
+        const tieneAsistencia = esAsistenciaPura || txt.includes("0") || txt.includes("O") || txt.includes("⃠");
         const tieneFalta = txt.includes("2");
         const tieneUniformeFalla = txt.includes("U");
         const tieneRetardo = txt.includes("R");
         const tieneEvasion = txt.includes("E");
 
-        if (esAsistenciaPura || tieneAsistencia) {
+        if (tieneAsistencia && !tieneFalta) {
           asistencias++;
           puntosAsistenciaCalculados += 1; // +1 Asistencia
-
           if (!tieneUniformeFalla) {
-            puntosAsistenciaCalculados += 5; // +5 Bono uniforme impecable
+            puntosAsistenciaCalculados += 5; // +5 Bono uniforme
           }
         }
-
         if (tieneFalta) {
           faltasSinExcusa++;
           puntosAsistenciaCalculados -= 1;
@@ -362,7 +360,8 @@
       const corazonesTotales = Math.max(0, corazonesBase + corazonesGanados - corazonesPerdidos);
       const maxCorazonesVisuales = Math.max(5, Math.ceil(corazonesTotales));
 
-      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : (est.coins || 0));
+      // Suma única: Puntos manuales de Drive + puntos calculados por asistencia
+      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : 0);
       const totalCoinsFinal = Math.max(0, baseManuales + puntosAsistenciaCalculados);
       
       est.coins = totalCoinsFinal;
@@ -380,6 +379,105 @@
       };
     }
 
+    // =========================================================================
+    // 6. MODAL DETALLADO ESTILO FLIPPITY (SIN DUPLICAR FECHAS)
+    // =========================================================================
+    function abrirModal(id) {
+      const est = estudiantes.find(e => e.id === id);
+      if (!est) return;
+      const stats = calcularEstadisticas(est);
+
+      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${(est.nota || 4.5).toFixed(1)}`;
+      document.getElementById("modalNombre").textContent = est.nombre;
+
+      const historialFechasHTML = (est.fechas || []).map(f => {
+        const colores = {
+          "0": "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+          "1": "bg-sky-500/20 text-sky-300 border-sky-500/40",
+          "2": "bg-rose-500/20 text-rose-300 border-rose-500/40",
+          "U": "bg-amber-500/20 text-amber-300 border-amber-500/40",
+          "R": "bg-orange-500/20 text-orange-300 border-orange-500/40",
+          "E": "bg-purple-500/20 text-purple-300 border-purple-500/40"
+        };
+        return `
+          <div class="px-2.5 py-1.5 rounded-lg border text-center ${colores[f.codigo[0]] || 'bg-slate-800'}">
+            <div class="text-[10px] opacity-75">${f.fecha}</div>
+            <div class="font-gamer text-xs font-bold">${f.codigo}</div>
+          </div>
+        `;
+      }).join("");
+
+      // Unimos limpiamente los desgloses de la tabla de Drive y los de asistencia sin duplicar bucles
+      let detallePuntosFlippity = [];
+      if (est.desglosesTabla && est.desglosesTabla.length > 0) {
+        detallePuntosFlippity = [...est.desglosesTabla];
+      }
+      if (est.desglosesAsistencia && est.desglosesAsistencia.length > 0) {
+        detallePuntosFlippity = [...detallePuntosFlippity, ...est.desglosesAsistencia];
+      }
+
+      const desgloseFlippityHTML = detallePuntosFlippity.length === 0
+        ? `<p class="text-xs text-slate-400">Aún no hay registros de puntajes detallados.</p>`
+        : `<div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            ${detallePuntosFlippity.map(item => `
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-semibold text-white">${item.motivo}</span>
+                  <span class="text-[10px] text-slate-400 ml-2">📅 ${item.fecha}</span>
+                </div>
+                <span class="font-gamer font-bold px-2 py-0.5 rounded ${item.tipo === 'positivo' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${item.puntos} pts</span>
+              </div>
+            `).join("")}
+           </div>`;
+
+      const detalleInsignias = DEFINICION_INSIGNIAS.map(ins => {
+        const activa = ins.evaluar(est, stats);
+        return `
+          <div class="p-3 rounded-xl border ${activa ? 'bg-emerald-950/30 border-emerald-600/50' : 'bg-slate-900/60 border-slate-800 opacity-60'} flex items-start gap-3">
+            <div class="text-2xl">${ins.icono}</div>
+            <div>
+              <div class="text-xs font-bold ${activa ? 'text-emerald-300' : 'text-slate-400'}">
+                ${ins.nombre} ${activa ? '✓ DESBLOQUEADA' : '🔒 BLOQUEADA'}
+              </div>
+              <p class="text-[11px] text-slate-400 mt-0.5">${ins.requisito}</p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("modalContenido").innerHTML = `
+        <div class="flex justify-between items-center p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div>
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Total Acumulado</p>
+            <p class="font-gamer text-2xl font-extrabold text-amber-400 mt-0.5">🪙 ${est.coins} Techno Coins</p>
+          </div>
+          <div class="text-right">
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Nivel de Vida</p>
+            <p class="font-gamer text-sm font-bold text-rose-400 mt-0.5">${stats.corazonesTotales.toFixed(2)} ❤️</p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs font-bold uppercase text-slate-400">📋 Desglose de Puntos por Motivo (Estilo Flippity)</p>
+          ${desgloseFlippityHTML}
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Historial de Asistencia y Códigos</p>
+          <div class="flex flex-wrap gap-2">${historialFechasHTML.length ? historialFechasHTML : '<span class="text-xs text-slate-400">Sin registros recientes</span>'}</div>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Estado de las Insignias</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">${detalleInsignias}</div>
+        </div>
+      `;
+
+      const modal = document.getElementById("modalEstudiante");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+    
     // =========================================================================
     // 5. RENDERIZADO DE TARJETAS Y LEADERBOARD
     // =========================================================================
