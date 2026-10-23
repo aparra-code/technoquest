@@ -103,19 +103,19 @@
         <div class="card-glass rounded-xl p-4 border-l-4 border-rose-500">
           <p class="text-xs text-slate-400 uppercase font-bold">Regla de Corazones de Vida</p>
           <p class="text-sm mt-1 text-slate-200">
-            Inicias con <strong>3.0 ❤️</strong>. Cada asistencia (<code class="text-emerald-400 font-bold">0</code>) suma <strong>+¼ ❤️ (+0.25)</strong>. Cada falta sin excusa (<code class="text-rose-400 font-bold">2</code>) resta <strong>-1.0 ❤️</strong>.
+            Inicias con <strong>3.0 ❤️</strong>. Cada asistencia suma <strong>+¼ de ❤️</strong>. Cada falta sin excusa resta <strong>un ❤️</strong>.
           </p>
         </div>
         <div class="card-glass rounded-xl p-4 border-l-4 border-amber-400">
-          <p class="text-xs text-slate-400 uppercase font-bold">Techno Coins Automáticas</p>
+          <p class="text-xs text-slate-400 uppercase font-bold">Tecno Coins Automáticas</p>
           <p class="text-sm mt-1 text-slate-200">
-            Asistencia (+1), Faltas (-1), Uniforme/Tarde (-5), Evasión (-20), más los puntos de tus trabajos, retos y desafíos lógicos en clase.
+            Asistencia (+1), Faltas (-1), Uniforme/Retardo (-5), Evasión (-20), más los puntos de tus trabajos, retos y desafíos en clase.
           </p>
         </div>
         <div class="card-glass rounded-xl p-4 border-l-4 border-emerald-400">
           <p class="text-xs text-slate-400 uppercase font-bold">11 Insignias Desbloqueables</p>
           <p class="text-sm mt-1 text-slate-200">
-            Insignias por asistencia, puntualidad, portar tu hoja, oratoria al frente y <strong>convivencia sana</strong> en el aula.
+            Insignias por asistencia, puntualidad, portar tu hoja de desafio, responder el desafio correctamente al frente y <strong>convivencia sana</strong> en el aula.
           </p>
         </div>
       </div>
@@ -171,32 +171,32 @@
           <div class="p-3 rounded-xl bg-emerald-950/50 border border-emerald-700/50">
             <div class="text-xl font-gamer font-bold text-emerald-400">0</div>
             <div class="text-xs font-bold mt-1">Asistió</div>
-            <div class="text-[11px] text-emerald-300 mt-0.5">+¼ ❤️ y +1 Coin</div>
+            <div class="text-[11px] text-emerald-300 mt-0.5">+¼ ❤️ y +1 tecnocoin</div>
           </div>
           <div class="p-3 rounded-xl bg-sky-950/50 border border-sky-700/50">
             <div class="text-xl font-gamer font-bold text-sky-400">1</div>
-            <div class="text-xs font-bold mt-1">Excusa</div>
+            <div class="text-xs font-bold mt-1">Inasistencia con excusa</div>
             <div class="text-[11px] text-sky-300 mt-0.5">Neutro</div>
           </div>
           <div class="p-3 rounded-xl bg-rose-950/50 border border-rose-700/50">
             <div class="text-xl font-gamer font-bold text-rose-400">2</div>
-            <div class="text-xs font-bold mt-1">Falta s/excusa</div>
-            <div class="text-[11px] text-rose-300 mt-0.5">-1.0 ❤️ y -1 Coin</div>
+            <div class="text-xs font-bold mt-1">Inasistencia sin excusa</div>
+            <div class="text-[11px] text-rose-300 mt-0.5">Pierdes un ❤️ y -1 Tecnocoin</div>
           </div>
           <div class="p-3 rounded-xl bg-amber-950/50 border border-amber-700/50">
             <div class="text-xl font-gamer font-bold text-amber-400">U</div>
-            <div class="text-xs font-bold mt-1">Uniforme</div>
-            <div class="text-[11px] text-amber-300 mt-0.5">-5 Coins y Bloquea 🛡️</div>
+            <div class="text-xs font-bold mt-1">Falla uniforme</div>
+            <div class="text-[11px] text-amber-300 mt-0.5">-5 tecnocoins y Bloquea 🛡️</div>
           </div>
           <div class="p-3 rounded-xl bg-orange-950/50 border border-orange-700/50">
             <div class="text-xl font-gamer font-bold text-orange-400">R</div>
             <div class="text-xs font-bold mt-1">Retardo</div>
-            <div class="text-[11px] text-orange-300 mt-0.5">-5 Coins y Bloquea ⚡</div>
+            <div class="text-[11px] text-orange-300 mt-0.5">-5 tecnocoins y Bloquea ⚡</div>
           </div>
           <div class="p-3 rounded-xl bg-purple-950/50 border border-purple-700/50">
             <div class="text-xl font-gamer font-bold text-purple-400">E</div>
             <div class="text-xs font-bold mt-1">Evasión</div>
-            <div class="text-[11px] text-purple-300 mt-0.5">-20 Coins</div>
+            <div class="text-[11px] text-purple-300 mt-0.5">-20 tecnocoins</div>
           </div>
         </div>
       </div>
@@ -240,13 +240,13 @@
                 🎤 Pasó al frente (+5 pts & Insignia)
               </button>
               <button onclick="simularAccion('hoja', -5)" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-900/60 border border-slate-700 text-left text-xs font-bold">
-                📝 Olvidó su hoja (-pts & Bloquea Insignia)
+                📝 Olvidó su hoja (-5 pts & Bloquea Insignia)
               </button>
               <button onclick="simularAccion('convivencia', 'fueraPuesto')" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-900/60 border border-slate-700 text-left text-xs font-bold">
-                🪑 Fuera del puesto (-pts)
+                🪑 Fuera del puesto (-5 pts)
               </button>
               <button onclick="simularAccion('convivencia', 'celular')" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-900/60 border border-slate-700 text-left text-xs font-bold">
-                📵 Celular sin permiso (-pts)
+                📵 Celular sin permiso (-5 pts)
               </button>
             </div>
           </div>
@@ -285,28 +285,28 @@
         id: "imbatible",
         icono: "🏆",
         nombre: "Imbatible",
-        requisito: "0 inasistencias sin excusa (código 2)",
+        requisito: "0 inasistencias sin excusa",
         evaluar: (est, stats) => stats.faltasSinExcusa === 0
       },
       {
         id: "uniforme",
         icono: "🛡️",
         nombre: "Armadura Impecable",
-        requisito: "Cumplió con el uniforme completo en todas las clases (0 códigos U)",
+        requisito: "Cumplió con el uniforme completo en todas las clases",
         evaluar: (est, stats) => stats.uniforme === 0
       },
       {
         id: "puntualidad",
         icono: "⚡",
         nombre: "Reloj Suizo",
-        requisito: "Llegó puntual a todas las clases (0 códigos R y 0 códigos E)",
+        requisito: "Llegó puntual a todas las clases",
         evaluar: (est, stats) => stats.retardos === 0 && stats.excusaTarde === 0
       },
       {
         id: "portador",
         icono: "📝",
         nombre: "Portador Fiel",
-        requisito: "Siempre trajo su hoja para responder los desafíos de clase (0 olvidos)",
+        requisito: "Siempre trajo su hoja para responder los desafíos de clase",
         evaluar: (est) => (est.hojasOlidadas || 0) === 0
       },
       {
