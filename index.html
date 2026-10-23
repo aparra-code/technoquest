@@ -275,7 +275,7 @@
     // =========================================================================
     // 1. URL DE TU GOOGLE APPS SCRIPT (Pega aquí la URL terminada en /exec)
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxnffcSWxUBlGLzZs1NFZ07mr7uxvvcvTKo449Uq2GJXF0511S2HBSdPTDaDyMMvbrU/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbynFCu69fZ9YEYIj8vBoULx5DARpg1J6tYZ_pYj3V4s4vPRkcOT-TeReU49Od7A7SH5/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -352,48 +352,6 @@
         evaluar: (est) => (est.faltasConvivencia?.groserias || 0) === 0
       }
     ];
-
-    // =========================================================================
-    // 3. DATOS DE DEMOSTRACIÓN (Se reemplazan automáticamente al conectar Drive)
-    // =========================================================================
-    let estudiantes = [
-      {
-        id: 1,
-        nombre: "Valery Sofía Gómez",
-        curso: "802",
-        coins: 480,
-        nota: 4.9,
-        pendientes: 0,
-        retosCompletados: 5,
-        vecesAlFrente: 2,
-        hojasOlidadas: 0,
-        faltasConvivencia: { fueraPuesto: 0, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
-        historialConvivencia: [],
-        fechas: [
-          { fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "0" },
-          { fecha: "17/08", codigo: "0" }, { fecha: "24/08", codigo: "0" }
-        ]
-      },
-      {
-        id: 2,
-        nombre: "Juan Sebastián Martínez",
-        curso: "803",
-        coins: 350,
-        nota: 4.2,
-        pendientes: 0,
-        retosCompletados: 3,
-        vecesAlFrente: 0,
-        hojasOlidadas: 1,
-        faltasConvivencia: { fueraPuesto: 1, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
-        historialConvivencia: [{ motivo: "Fuera del puesto", puntos: -10, fecha: "15/08" }],
-        fechas: [
-          { fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "U" },
-          { fecha: "17/08", codigo: "0" }, { fecha: "24/08", codigo: "R" }
-        ]
-      }
-    ];
-
-    let cursoActual = "TODOS";
 
     // =========================================================================
     // 4. CÁLCULO DE CORAZONES FRACCIONADOS (SVG)
