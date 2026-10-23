@@ -72,6 +72,7 @@
 
     <!-- PESTAÑA 1: LEADERBOARD, CORAZONES E INSIGNIAS -->
     <section id="vista-leaderboard">
+      <!-- Barra de Cursos 802 - 807 y Buscador -->
       <div class="card-glass rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-2" id="ContenedorBotonesCurso">
           <span class="text-xs uppercase tracking-wider text-slate-400 font-bold mr-1">Curso:</span>
@@ -95,6 +96,7 @@
         </div>
       </div>
 
+      <!-- Resumen de Regla de Corazones y Puntos -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div class="card-glass rounded-xl p-4 border-l-4 border-rose-500">
           <p class="text-xs text-slate-400 uppercase font-bold">Regla de Corazones de Vida</p>
@@ -116,6 +118,7 @@
         </div>
       </div>
 
+      <!-- Listado de Tarjetas Gamer -->
       <div id="gridEstudiantes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </section>
 
@@ -153,12 +156,12 @@
       </div>
     </section>
 
-    <!-- PESTAÑA 3: PACTOS DE AULA E INSIGNIAS (ADAPTADO CURSO 803) -->
+    <!-- PESTAÑA 3: PACTOS DE AULA E INSIGNIAS -->
     <section id="vista-pactos" class="hidden space-y-6">
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-cyan-400 mb-2">📜 Pactos de Aula y Reglas de Puntuación</h2>
         <p class="text-sm text-slate-300 mb-4">El sistema procesa automáticamente los siguientes registros de asistencia y convivencia:</p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center mb-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
           <div class="p-3 rounded-xl bg-emerald-950/50 border border-emerald-700/50">
             <div class="text-xl font-gamer font-bold text-emerald-400">0</div>
             <div class="text-xs font-bold mt-1">Asistió</div>
@@ -188,80 +191,6 @@
             <div class="text-xl font-gamer font-bold text-purple-400">E</div>
             <div class="text-xs font-bold mt-1">Evasión</div>
             <div class="text-[11px] text-purple-300 mt-0.5">-20 tecnocoins</div>
-          </div>
-        </div>
-
-        <!-- PACTO DE AULA OFICIAL - CURSO 803 (Tercer Periodo 2026) -->
-        <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4">
-          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios de Evaluación • Curso 803</h3>
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
-          </div>
-
-          <p class="text-xs text-slate-300">
-            Temáticas y distribución porcentual oficial adaptada para el curso 803[cite: 9]:
-          </p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span>
-                <span class="text-[10px] text-slate-400">Funciones, gráficos, factura, nómina</span>
-              </div>
-              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% dibujo)</span></span>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">💻 Microsoft PowerPoint</span>
-                <span class="text-[10px] text-slate-400">Vínculos, animaciones y presentaciones</span>
-              </div>
-              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% dibujo)</span></span>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">🌐 Páginas web – Internet</span>
-                <span class="text-[10px] text-slate-400">HTML, estructura básica y plantillas</span>
-              </div>
-              <span class="font-bold text-amber-400">5% <span class="text-[9px] text-slate-400">(sin Google Sites)</span></span>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">🚀 Proyecto Final</span>
-                <span class="text-[10px] text-slate-400">Incluye Google Sites + etapas del proyecto</span>
-              </div>
-              <span class="font-bold text-amber-400">40% <span class="text-[9px] text-slate-400">(+10% Sites)</span></span>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">📚 Actividad Plan Lector</span>
-                <span class="text-[10px] text-slate-400">Seguimiento y lectura de periodo</span>
-              </div>
-              <span class="font-bold text-amber-400">10%</span>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span>
-                <span class="text-[10px] text-slate-400">Retos, asistencia y participación</span>
-              </div>
-              <span class="font-bold text-amber-400">10%</span>
-            </div>
-
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
-              <div>
-                <span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span>
-                <span class="text-[10px] text-slate-400">5% cada una</span>
-              </div>
-              <span class="font-bold text-amber-400">10%</span>
-            </div>
-          </div>
-
-          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
-            <em>Nota aclaratoria (803):</em> El porcentaje de Dibujo técnico se redistribuyó sumando un 5% a Hojas de cálculo y 5% a PowerPoint. Asimismo, el bloque de Google Sites se integró directamente al Proyecto final[cite: 9].
           </div>
         </div>
       </div>
@@ -338,7 +267,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = https://script.google.com/macros/s/AKfycbw33Hb8CPmX2oQuJsDqzdvnleeJfxpDzwytxPLrj3IKASOJi3-VpUG4VmHZLZcJCQD0/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw33Hb8CPmX2oQuJsDqzdvnleeJfxpDzwytxPLrj3IKASOJi3-VpUG4VmHZLZcJCQD0/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -356,11 +285,30 @@
       { id: "groserias", icono: "💬", nombre: "Cultura de Paz", requisito: "Nunca perdió puntos por decir groserías", evaluar: (est) => (est.faltasConvivencia?.groserias || 0) === 0 }
     ];
 
-    let estudiantes = [];
+    // =========================================================================
+    // 3. DATOS DE DEMOSTRACIÓN (Se reemplazan al conectar Drive)
+    // =========================================================================
+    let estudiantes = [
+      {
+        id: 1,
+        nombre: "Valery Sofía Gómez",
+        curso: "802",
+        coins: 480,
+        nota: 4.9,
+        pendientes: 0,
+        retosCompletados: 5,
+        vecesAlFrente: 2,
+        hojasOlidadas: 0,
+        faltasConvivencia: { fueraPuesto: 0, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
+        historialConvivencia: [],
+        fechas: [{ fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "0" }]
+      }
+    ];
+
     let cursoActual = "TODOS";
 
     // =========================================================================
-    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (SIN DOBLE SUMA)
+    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (CON SOPORTE PARA "0" Y TABLA COMPLETA)
     // =========================================================================
     function calcularEstadisticas(est) {
       let asistencias = 0;      
@@ -372,27 +320,28 @@
       let puntosAsistenciaCalculados = 0;
 
       (est.fechas || []).forEach(reg => {
-        const txt = String(reg.codigo || "").toUpperCase().trim();
+        const textoOriginal = String(reg.codigo || "").toUpperCase().trim();
         
-        const esAsistenciaPura = txt === "0" || txt === "O" || txt === "⃠";
-        const tieneAsistencia = esAsistenciaPura || txt.includes("0") || txt.includes("O") || txt.includes("⃠");
-        const tieneFalta = txt.includes("2");
-        const tieneUniformeFalla = txt.includes("U");
-        const tieneRetardo = txt.includes("R");
-        const tieneEvasion = txt.includes("E");
+        const tieneAsistencia = textoOriginal === "0" || textoOriginal === "O" || textoOriginal.startsWith("0") || textoOriginal.includes("0");
+        const tieneFalta = textoOriginal.includes("2");
+        const tieneUniforme = textoOriginal.includes("U");
+        const tieneRetardo = textoOriginal.includes("R");
+        const tieneEvasion = textoOriginal.includes("E");
 
-        if (tieneAsistencia && !tieneFalta) {
+        if (tieneAsistencia) {
           asistencias++;
-          puntosAsistenciaCalculados += 1; 
-          if (!tieneUniformeFalla) {
-            puntosAsistenciaCalculados += 5; 
+          puntosAsistenciaCalculados += 1; // Asistencia base: +1 coin
+
+          if (!tieneUniforme) {
+            puntosAsistenciaCalculados += 5; // Bono uniforme impecable
           }
         }
+
         if (tieneFalta) {
           faltasSinExcusa++;
           puntosAsistenciaCalculados -= 1;
         }
-        if (tieneUniformeFalla) {
+        if (tieneUniforme) {
           uniforme++;
           puntosAsistenciaCalculados -= 5;
         }
@@ -412,7 +361,8 @@
       const corazonesTotales = Math.max(0, corazonesBase + corazonesGanados - corazonesPerdidos);
       const maxCorazonesVisuales = Math.max(5, Math.ceil(corazonesTotales));
 
-      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : 0);
+      // Suma total entre los puntos manuales de la tabla de Drive + el cálculo de asistencia
+      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : (est.coins || 0));
       const totalCoinsFinal = Math.max(0, baseManuales + puntosAsistenciaCalculados);
       
       est.coins = totalCoinsFinal;
@@ -436,8 +386,7 @@
     function renderizarEstudiantes() {
       const contenedor = document.getElementById("gridEstudiantes");
       if (!contenedor) return;
-      const buscadorElem = document.getElementById("buscadorEstudiante");
-      const textoBusqueda = buscadorElem ? buscadorElem.value.toLowerCase().trim() : "";
+      const textoBusqueda = document.getElementById("buscadorEstudiante").value.toLowerCase().trim();
 
       const filtrados = estudiantes
         .filter(e => cursoActual === "TODOS" || e.curso === cursoActual)
@@ -568,12 +517,39 @@
       }).join("");
 
       let detallePuntosFlippity = [];
-      if (est.desglosesTabla && est.desglosesTabla.length > 0) {
-        detallePuntosFlippity = [...est.desglosesTabla];
+      (est.fechas || []).forEach(f => {
+        const txt = f.codigo.toUpperCase();
+        if (txt.includes("0")) {
+          detallePuntosFlippity.push({ motivo: `Asistencia a clase (${f.codigo})`, puntos: "+1", tipo: "positivo", fecha: f.fecha });
+          if (!txt.includes("U")) {
+            detallePuntosFlippity.push({ motivo: "Bono Uniforme Impecable", puntos: "+5", tipo: "positivo", fecha: f.fecha });
+          }
+        }
+        if (txt.includes("2")) {
+          detallePuntosFlippity.push({ motivo: "Inasistencia sin excusa", puntos: "-1", tipo: "negativo", fecha: f.fecha });
+        }
+        if (txt.includes("U")) {
+          detallePuntosFlippity.push({ motivo: "Falla de Uniforme", puntos: "-5", tipo: "negativo", fecha: f.fecha });
+        }
+        if (txt.includes("R")) {
+          detallePuntosFlippity.push({ motivo: "Retardo / Llegada tarde", puntos: "-5", tipo: "negativo", fecha: f.fecha });
+        }
+        if (txt.includes("E")) {
+          detallePuntosFlippity.push({ motivo: "Evasión de clase", puntos: "-20", tipo: "negativo", fecha: f.fecha });
+        }
+      });
+
+      if ((est.retosCompletados || 0) > 0) {
+        detallePuntosFlippity.push({ motivo: `Retos lógicos (${est.retosCompletados})`, puntos: `+${est.retosCompletados * 5}`, tipo: "positivo", fecha: "Periodo" });
       }
-      if (est.desglosesAsistencia && est.desglosesAsistencia.length > 0) {
-        detallePuntosFlippity = [...detallePuntosFlippity, ...est.desglosesAsistencia];
+      if ((est.vecesAlFrente || 0) > 0) {
+        detallePuntosFlippity.push({ motivo: `Pasó al frente (${est.vecesAlFrente} veces)`, puntos: `+${est.vecesAlFrente * 5}`, tipo: "positivo", fecha: "Periodo" });
       }
+
+      const listaDescuentos = est.historialConvivencia || [];
+      listaDescuentos.forEach(d => {
+        detallePuntosFlippity.push({ motivo: d.motivo, puntos: `${d.puntos}`, tipo: "negativo", fecha: d.fecha || "Periodo" });
+      });
 
       const desgloseFlippityHTML = detallePuntosFlippity.length === 0
         ? `<p class="text-xs text-slate-400">Aún no hay registros de puntajes detallados.</p>`
@@ -644,7 +620,7 @@
     }
 
     // =========================================================================
-    // 7. SIMULADOR Y CARGA
+    // 7. SIMULADOR EN CLASE Y SINCRONIZACIÓN
     // =========================================================================
     function cargarSelectSimulador() {
       const select = document.getElementById("selectSimulador");
@@ -660,7 +636,7 @@
       if (!est) return;
 
       if (tipo === 'asistencia') {
-        est.fechas.push({ fecha: "Clase Extra", codigo: valor });
+        est.fechas.push({ fecha: "Hoy", codigo: valor });
       } else if (tipo === 'reto') {
         est.retosCompletados = (est.retosCompletados || 0) + 1;
       } else if (tipo === 'frente') {
@@ -717,6 +693,7 @@
       }
     }
 
+    // INICIALIZACIÓN AUTOMÁTICA
     document.addEventListener("DOMContentLoaded", () => {
       cargarSelectSimulador();
       renderizarCatalogoInsignias();
