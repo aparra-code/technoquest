@@ -481,3 +481,211 @@
 
     function filtrarCurso(curso) {
       cursoActual = curso;
+      document.querySelectorAll(".btn-curso").forEach(btn => {
+        if (btn.dataset.curso === curso) {
+          btn.className = "btn-curso px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white";
+        } else {
+          btn.className = "btn-curso px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700";
+        }
+      });
+      renderizarEstudiantes();
+    }
+
+    // =========================================================================
+    // 6. MODAL DETALLADO ESTILO FLIPPITY
+    // =========================================================================
+    function abrirModal(id) {
+      const est = estudiantes.find(e => e.id === id);
+      if (!est) return;
+      const stats = calcularEstadisticas(est);
+
+      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${(est.nota || 4.5).toFixed(1)}`;
+      document.getElementById("modalNombre").textContent = est.nombre;
+
+      const historialFechasHTML = (est.fechas || []).map(f => {
+        const colores = {
+          "0": "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+          "1": "bg-sky-500/20 text-sky-300 border-sky-500/40",
+          "2": "bg-rose-500/20 text-rose-300 border-rose-500/40",
+          "U": "bg-amber-500/20 text-amber-300 border-amber-500/40",
+          "R": "bg-orange-500/20 text-orange-300 border-orange-500/40",
+          "E": "bg-purple-500/20 text-purple-300 border-purple-500/40"
+        };
+        return `
+          <div class="px-2.5 py-1.5 rounded-lg border text-center ${colores[f.codigo[0]] || 'bg-slate-800'}">
+            <div class="text-[10px] opacity-75">${f.fecha}</div>
+            <div class="font-gamer text-xs font-bold">${f.codigo}</div>
+          </div>
+        `;
+      }).join("");
+
+      let detallePuntosFlippity = [];
+      if (est.desglosesTabla && est.desglosesTabla.length > 0) {
+        detallePuntosFlippity = [...est.desglosesTabla];
+      }
+      if (est.desglosesAsistencia && est.desglosesAsistencia.length > 0) {
+        detallePuntosFlippity = [...detallePuntosFlippity, ...est.desglosesAsistencia];
+      }
+
+      const desgloseFlippityHTML = detallePuntosFlippity.length === 0
+        ? `<p class="text-xs text-slate-400">Aún no hay registros de puntajes detallados.</p>`
+        : `<div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            ${detallePuntosFlippity.map(item => `
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-semibold text-white">${item.motivo}</span>
+                  <span class="text-[10px] text-slate-400 ml-2">📅 ${item.fecha}</span>
+                </div>
+                <span class="font-gamer font-bold px-2 py-0.5 rounded ${item.tipo === 'positivo' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${item.puntos} pts</span>
+              </div>
+            `).join("")}
+           </div>`;
+
+      const detalleInsignias = DEFINICION_INSIGNIAS.map(ins => {
+        const activa = ins.evaluar(est, stats);
+        return `
+          <div class="p-3 rounded-xl border ${activa ? 'bg-emerald-950/30 border-emerald-600/50' : 'bg-slate-900/60 border-slate-800 opacity-60'} flex items-start gap-3">
+            <div class="text-2xl">${ins.icono}</div>
+            <div>
+              <div class="text-xs font-bold ${activa ? 'text-emerald-300' : 'text-slate-400'}">
+                ${ins.nombre} ${activa ? '✓ DESBLOQUEADA' : '🔒 BLOQUEADA'}
+              </div>
+              <p class="text-[11px] text-slate-400 mt-0.5">${ins.requisito}</p>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("modalContenido").innerHTML = `
+        <div class="flex justify-between items-center p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div>
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Total Acumulado</p>
+            <p class="font-gamer text-2xl font-extrabold text-amber-400 mt-0.5">🪙 ${est.coins} Techno Coins</p>
+          </div>
+          <div class="text-right">
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Nivel de Vida</p>
+            <p class="font-gamer text-sm font-bold text-rose-400 mt-0.5">${stats.corazonesTotales.toFixed(2)} ❤️</p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs font-bold uppercase text-slate-400">📋 Desglose de Puntos por Motivo (Estilo Flippity)</p>
+          ${desgloseFlippityHTML}
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Historial de Asistencia y Códigos</p>
+          <div class="flex flex-wrap gap-2">${historialFechasHTML.length ? historialFechasHTML : '<span class="text-xs text-slate-400">Sin registros recientes</span>'}</div>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Estado de las Insignias</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">${detalleInsignias}</div>
+        </div>
+      `;
+
+      const modal = document.getElementById("modalEstudiante");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function cerrarModal() {
+      const modal = document.getElementById("modalEstudiante");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // =========================================================================
+    // 7. SIMULADOR Y SINCRONIZACIÓN
+    // =========================================================================
+    function cargarSelectSimulador() {
+      const select = document.getElementById("selectSimulador");
+      if (!select) return;
+      select.innerHTML = estudiantes.map(e => `<option value="${e.id}">[${e.curso}] ${e.nombre}</option>`).join("");
+    }
+
+    function simularAccion(tipo, valor) {
+      const select = document.getElementById("selectSimulador");
+      if (!select) return;
+      const id = Number(select.value);
+      const est = estudiantes.find(e => e.id === id);
+      if (!est) return;
+
+      if (tipo === 'asistencia') {
+        est.fechas.push({ fecha: "Hoy", codigo: valor });
+      } else if (tipo === 'reto') {
+        est.retosCompletados = (est.retosCompletados || 0) + 1;
+      } else if (tipo === 'frente') {
+        est.vecesAlFrente = (est.vecesAlFrente || 0) + 1;
+      } else if (tipo === 'hoja') {
+        est.hojasOlidadas = (est.hojasOlidadas || 0) + 1;
+      } else if (tipo === 'convivencia') {
+        est.faltasConvivencia[valor] = (est.faltasConvivencia[valor] || 0) + 1;
+      }
+
+      renderizarEstudiantes();
+      abrirModal(id);
+    }
+
+    function cambiarPestana(nombre) {
+      ["leaderboard", "misiones", "pactos", "simulador"].forEach(p => {
+        const vista = document.getElementById(`vista-${p}`);
+        const btn = document.getElementById(`tab-${p}`);
+        if (vista) vista.classList.toggle("hidden", p !== nombre);
+        if (btn) {
+          btn.className = (p === nombre)
+            ? "px-4 py-2 rounded-lg text-sm font-bold bg-emerald-500 text-slate-950 transition"
+            : "px-4 py-2 rounded-lg text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+        }
+      });
+    }
+
+    function renderizarCatalogoInsignias() {
+      const contenedor = document.getElementById("catalogoInsignias");
+      if (!contenedor) return;
+      contenedor.innerHTML = DEFINICION_INSIGNIAS.map(ins => `
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl badge-active flex items-center justify-center text-xl shrink-0">${ins.icono}</div>
+          <div>
+            <h4 class="font-bold text-sm text-white">${ins.nombre}</h4>
+            <p class="text-xs text-slate-400 mt-1">${ins.requisito}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    async function sincronizarConDrive() {
+      if (!APPS_SCRIPT_URL) return;
+      try {
+        const res = await fetch(APPS_SCRIPT_URL);
+        const data = await res.json();
+        if (data.estudiantes && data.estudiantes.length > 0) {
+          estudiantes = data.estudiantes.map((e, idx) => ({ id: idx + 1, ...e }));
+          cargarSelectSimulador();
+          renderizarEstudiantes();
+        } else {
+          document.getElementById("gridEstudiantes").innerHTML = `
+            <div class="col-span-full py-12 text-center card-glass rounded-2xl">
+              <p class="text-sm text-rose-400">No se encontraron registros de estudiantes en el archivo maestro de Google Drive.</p>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.error("Error al conectar con Drive", err);
+        document.getElementById("gridEstudiantes").innerHTML = `
+          <div class="col-span-full py-12 text-center card-glass rounded-2xl">
+            <p class="text-sm text-rose-400">Error de conexión al cargar los datos desde Google Drive. Intenta recargar la página.</p>
+          </div>
+        `;
+      }
+    }
+
+    // INICIALIZACIÓN AUTOMÁTICA
+    document.addEventListener("DOMContentLoaded", () => {
+      renderizarCatalogoInsignias();
+      renderizarEstudiantes(); // Muestra el mensaje de carga con animación de reloj de arena
+      sincronizarConDrive();    // Descarga y pinta los datos reales en cuanto llegan
+    });
+  </script>
+</body>
+</html>
