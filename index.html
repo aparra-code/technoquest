@@ -354,6 +354,48 @@
     ];
 
     // =========================================================================
+    // 3. DATOS DE DEMOSTRACIÓN (Se reemplazan automáticamente al conectar Drive)
+    // =========================================================================
+    let estudiantes = [
+      {
+        id: 1,
+        nombre: "Valery Sofía Gómez",
+        curso: "802",
+        coins: 480,
+        nota: 4.9,
+        pendientes: 0,
+        retosCompletados: 5,
+        vecesAlFrente: 2,
+        hojasOlidadas: 0,
+        faltasConvivencia: { fueraPuesto: 0, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
+        historialConvivencia: [],
+        fechas: [
+          { fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "0" },
+          { fecha: "17/08", codigo: "0" }, { fecha: "24/08", codigo: "0" }
+        ]
+      },
+      {
+        id: 2,
+        nombre: "Juan Sebastián Martínez",
+        curso: "803",
+        coins: 350,
+        nota: 4.2,
+        pendientes: 0,
+        retosCompletados: 3,
+        vecesAlFrente: 0,
+        hojasOlidadas: 1,
+        faltasConvivencia: { fueraPuesto: 1, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
+        historialConvivencia: [{ motivo: "Fuera del puesto", puntos: -10, fecha: "15/08" }],
+        fechas: [
+          { fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "U" },
+          { fecha: "17/08", codigo: "0" }, { fecha: "24/08", codigo: "R" }
+        ]
+      }
+    ];
+
+    let cursoActual = "TODOS";
+
+    // =========================================================================
     // 4. CÁLCULO DE CORAZONES FRACCIONADOS (SVG)
     // =========================================================================
     function calcularEstadisticas(est) {
