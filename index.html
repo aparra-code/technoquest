@@ -903,6 +903,21 @@
       });
     }
 
+    function mostrarPactoCurso(cursoId) {
+      ["802", "803", "804", "805", "806", "807"].forEach(id => {
+        const contenedor = document.getElementById(`pacto-curso-${id}`);
+        const boton = document.getElementById(`btn-pacto-${id}`);
+        if (contenedor) {
+          contenedor.classList.toggle("hidden", id !== cursoId);
+        }
+        if (boton) {
+          boton.className = (id === cursoId)
+            ? "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white transition"
+            : "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+        }
+      });
+    }
+
     function renderizarCatalogoInsignias() {
       const contenedor = document.getElementById("catalogoInsignias");
       if (!contenedor) return;
