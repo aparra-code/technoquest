@@ -70,9 +70,7 @@
 
   <main class="max-w-7xl mx-auto px-4 mt-6">
 
-    <!-- ==========================================
-         PESTAÑA 1: LEADERBOARD, CORAZONES E INSIGNIAS
-         ========================================== -->
+    <!-- PESTAÑA 1: LEADERBOARD, CORAZONES E INSIGNIAS -->
     <section id="vista-leaderboard">
       <!-- Barra de Cursos 802 - 807 y Buscador -->
       <div class="card-glass rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
@@ -124,9 +122,7 @@
       <div id="gridEstudiantes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </section>
 
-    <!-- ==========================================
-         PESTAÑA 2: TRABAJOS Y MISIONES CENTRALIZADOS
-         ========================================== -->
+    <!-- PESTAÑA 2: TRABAJOS Y MISIONES -->
     <section id="vista-misiones" class="hidden space-y-5">
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-emerald-400 mb-2">🚀 Misiones del Tercer Periodo (Grados 802 - 807)</h2>
@@ -160,9 +156,7 @@
       </div>
     </section>
 
-    <!-- ==========================================
-         PESTAÑA 3: PACTOS DE AULA Y CATÁLOGO DE INSIGNIAS
-         ========================================== -->
+    <!-- PESTAÑA 3: PACTOS DE AULA E INSIGNIAS -->
     <section id="vista-pactos" class="hidden space-y-6">
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-cyan-400 mb-2">📜 Pactos de Aula y Reglas de Puntuación</h2>
@@ -207,9 +201,7 @@
       </div>
     </section>
 
-    <!-- ==========================================
-         PESTAÑA 4: SIMULADOR EN VIVO PARA PROYECTAR EN EL SALÓN
-         ========================================== -->
+    <!-- PESTAÑA 4: SIMULADOR EN CLASE -->
     <section id="vista-simulador" class="hidden">
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-amber-400 mb-2">⚡ Simulador Interactivo en Clase</h2>
@@ -273,7 +265,7 @@
 
   <script>
     // =========================================================================
-    // 1. URL DE TU GOOGLE APPS SCRIPT (Pega aquí la URL terminada en /exec)
+    // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxA0RAhIC8Vb5TfM_lAUKx_-L8bUtTGnaAhZhafA_43linD6lXOvUVwlsbCtSWSQ0N7/exec";
 
@@ -281,80 +273,20 @@
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
     // =========================================================================
     const DEFINICION_INSIGNIAS = [
-      {
-        id: "imbatible",
-        icono: "🏆",
-        nombre: "Imbatible",
-        requisito: "0 inasistencias sin excusa",
-        evaluar: (est, stats) => stats.faltasSinExcusa === 0
-      },
-      {
-        id: "uniforme",
-        icono: "🛡️",
-        nombre: "Armadura Impecable",
-        requisito: "Cumplió con el uniforme completo en todas las clases",
-        evaluar: (est, stats) => stats.uniforme === 0
-      },
-      {
-        id: "puntualidad",
-        icono: "⚡",
-        nombre: "Reloj Suizo",
-        requisito: "Llegó puntual a todas las clases",
-        evaluar: (est, stats) => stats.retardos === 0 && stats.excusaTarde === 0
-      },
-      {
-        id: "portador",
-        icono: "📝",
-        nombre: "Portador Fiel",
-        requisito: "Siempre trajo su hoja para responder los desafíos de clase",
-        evaluar: (est) => (est.hojasOlidadas || 0) === 0
-      },
-      {
-        id: "orador",
-        icono: "🎤",
-        nombre: "Orador del Reto",
-        requisito: "Pasó voluntariamente al frente a exponer y explicar correctamente el desafío",
-        evaluar: (est) => (est.vecesAlFrente || 0) > 0
-      },
-      {
-        id: "puesto",
-        icono: "🪑",
-        nombre: "Guardián del Puesto",
-        requisito: "Nunca perdió puntos por estar fuera del puesto",
-        evaluar: (est) => (est.faltasConvivencia?.fueraPuesto || 0) === 0
-      },
-      {
-        id: "comida",
-        icono: "🍽️",
-        nombre: "Zona Limpia",
-        requisito: "Nunca perdió puntos por comer en clase",
-        evaluar: (est) => (est.faltasConvivencia?.comerClase || 0) === 0
-      },
-      {
-        id: "audifonos",
-        icono: "🎧",
-        nombre: "Oído Atento",
-        requisito: "Nunca perdió puntos por usar audífonos en clase",
-        evaluar: (est) => (est.faltasConvivencia?.audifonos || 0) === 0
-      },
-      {
-        id: "celular",
-        icono: "📵",
-        nombre: "Cero Distracción",
-        requisito: "Nunca perdió puntos por usar el celular sin permiso",
-        evaluar: (est) => (est.faltasConvivencia?.celular || 0) === 0
-      },
-      {
-        id: "groserias",
-        icono: "💬",
-        nombre: "Cultura de Paz",
-        requisito: "Nunca perdió puntos por decir groserías",
-        evaluar: (est) => (est.faltasConvivencia?.groserias || 0) === 0
-      }
+      { id: "imbatible", icono: "🏆", nombre: "Imbatible", requisito: "0 inasistencias sin excusa", evaluar: (est, stats) => stats.faltasSinExcusa === 0 },
+      { id: "uniforme", icono: "🛡️", nombre: "Armadura Impecable", requisito: "Cumplió con el uniforme completo en todas las clases", evaluar: (est, stats) => stats.uniforme === 0 },
+      { id: "puntualidad", icono: "⚡", nombre: "Reloj Suizo", requisito: "Llegó puntual a todas las clases", evaluar: (est, stats) => stats.retardos === 0 && stats.excusaTarde === 0 },
+      { id: "portador", icono: "📝", nombre: "Portador Fiel", requisito: "Siempre trajo su hoja para responder los desafíos de clase", evaluar: (est) => (est.hojasOlidadas || 0) === 0 },
+      { id: "orador", icono: "🎤", nombre: "Orador del Reto", requisito: "Pasó voluntariamente al frente a exponer y explicar correctamente el desafío", evaluar: (est) => (est.vecesAlFrente || 0) > 0 },
+      { id: "puesto", icono: "🪑", nombre: "Guardián del Puesto", requisito: "Nunca perdió puntos por estar fuera del puesto", evaluar: (est) => (est.faltasConvivencia?.fueraPuesto || 0) === 0 },
+      { id: "comida", icono: "🍽️", nombre: "Zona Limpia", requisito: "Nunca perdió puntos por comer en clase", evaluar: (est) => (est.faltasConvivencia?.comerClase || 0) === 0 },
+      { id: "audifonos", icono: "🎧", nombre: "Oído Atento", requisito: "Nunca perdió puntos por usar audífonos en clase", evaluar: (est) => (est.faltasConvivencia?.audifonos || 0) === 0 },
+      { id: "celular", icono: "📵", nombre: "Cero Distracción", requisito: "Nunca perdió puntos por usar el celular sin permiso", evaluar: (est) => (est.faltasConvivencia?.celular || 0) === 0 },
+      { id: "groserias", icono: "💬", nombre: "Cultura de Paz", requisito: "Nunca perdió puntos por decir groserías", evaluar: (est) => (est.faltasConvivencia?.groserias || 0) === 0 }
     ];
 
     // =========================================================================
-    // 3. DATOS DE DEMOSTRACIÓN (Se reemplazan automáticamente al conectar Drive)
+    // 3. DATOS DE DEMOSTRACIÓN (Se reemplazan al conectar Drive)
     // =========================================================================
     let estudiantes = [
       {
@@ -369,34 +301,14 @@
         hojasOlidadas: 0,
         faltasConvivencia: { fueraPuesto: 0, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
         historialConvivencia: [],
-        fechas: [
-          { fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "0" },
-          { fecha: "17/08", codigo: "0" }, { fecha: "24/08", codigo: "0" }
-        ]
-      },
-      {
-        id: 2,
-        nombre: "Juan Sebastián Martínez",
-        curso: "803",
-        coins: 350,
-        nota: 4.2,
-        pendientes: 0,
-        retosCompletados: 3,
-        vecesAlFrente: 0,
-        hojasOlidadas: 1,
-        faltasConvivencia: { fueraPuesto: 1, comerClase: 0, audifonos: 0, celular: 0, groserias: 0 },
-        historialConvivencia: [{ motivo: "Fuera del puesto", puntos: -10, fecha: "15/08" }],
-        fechas: [
-          { fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "U" },
-          { fecha: "17/08", codigo: "0" }, { fecha: "24/08", codigo: "R" }
-        ]
+        fechas: [{ fecha: "03/08", codigo: "0" }, { fecha: "10/08", codigo: "0" }]
       }
     ];
 
     let cursoActual = "TODOS";
 
-// =========================================================================
-    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (CORREGIDO PARA "0" SOLITO Y PUNTOS DE DRIVE)
+    // =========================================================================
+    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (CON SOPORTE PARA "0" Y TABLA COMPLETA)
     // =========================================================================
     function calcularEstadisticas(est) {
       let asistencias = 0;      
@@ -410,7 +322,6 @@
       (est.fechas || []).forEach(reg => {
         const textoOriginal = String(reg.codigo || "").toUpperCase().trim();
         
-        // Identificar si la celda contiene asistencia (0 o O)
         const tieneAsistencia = textoOriginal === "0" || textoOriginal === "O" || textoOriginal.startsWith("0") || textoOriginal.includes("0");
         const tieneFalta = textoOriginal.includes("2");
         const tieneUniforme = textoOriginal.includes("U");
@@ -421,9 +332,8 @@
           asistencias++;
           puntosAsistenciaCalculados += 1; // Asistencia base: +1 coin
 
-          // Si asistió y NO tiene la letra U, se lleva el bono de +5 puntos por uniforme impecable
           if (!tieneUniforme) {
-            puntosAsistenciaCalculados += 5;
+            puntosAsistenciaCalculados += 5; // Bono uniforme impecable
           }
         }
 
@@ -445,14 +355,13 @@
         }
       });
 
-      // Cálculo de Corazones de Vida
       const corazonesBase = 3.0;
       const corazonesGanados = asistencias * 0.25;
       const corazonesPerdidos = faltasSinExcusa * 1.0;
       const corazonesTotales = Math.max(0, corazonesBase + corazonesGanados - corazonesPerdidos);
       const maxCorazonesVisuales = Math.max(5, Math.ceil(corazonesTotales));
 
-      // Sumamos de forma segura los puntos manuales de la tabla de puntos de Drive + los calculados por asistencia
+      // Suma total entre los puntos manuales de la tabla de Drive + el cálculo de asistencia
       const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : (est.coins || 0));
       const totalCoinsFinal = Math.max(0, baseManuales + puntosAsistenciaCalculados);
       
@@ -470,12 +379,13 @@
         maxCorazonesVisuales
       };
     }
-    
+
     // =========================================================================
     // 5. RENDERIZADO DE TARJETAS Y LEADERBOARD
     // =========================================================================
     function renderizarEstudiantes() {
       const contenedor = document.getElementById("gridEstudiantes");
+      if (!contenedor) return;
       const textoBusqueda = document.getElementById("buscadorEstudiante").value.toLowerCase().trim();
 
       const filtrados = estudiantes
@@ -542,6 +452,30 @@
       }).join("");
     }
 
+    function dibujarCorazonesSVG(valorTotal, maxVisual, idUnico) {
+      let html = `<div class="flex flex-wrap items-center gap-1">`;
+      for (let i = 0; i < maxVisual; i++) {
+        const fraccion = Math.max(0, Math.min(1, valorTotal - i));
+        const porcentaje = Math.round(fraccion * 100);
+        const gradId = `heart-grad-${idUnico}-${i}`;
+
+        html += `
+          <svg class="w-5 h-5 drop-shadow" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="${porcentaje}%" stop-color="#f43f5e" />
+                <stop offset="${porcentaje}%" stop-color="#334155" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#${gradId})" stroke="#fb7185" stroke-width="1.2"
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        `;
+      }
+      html += `</div>`;
+      return html;
+    }
+
     function filtrarCurso(curso) {
       cursoActual = curso;
       document.querySelectorAll(".btn-curso").forEach(btn => {
@@ -555,7 +489,7 @@
     }
 
     // =========================================================================
-    // 6. MODAL DETALLADO ESTILO FLIPPITY (Desglose de puntos y motivos)
+    // 6. MODAL DETALLADO ESTILO FLIPPITY
     // =========================================================================
     function abrirModal(id) {
       const est = estudiantes.find(e => e.id === id);
@@ -565,7 +499,6 @@
       document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${(est.nota || 4.5).toFixed(1)}`;
       document.getElementById("modalNombre").textContent = est.nombre;
 
-      // 1. Historial de Asistencia y sus puntos asociados
       const historialFechasHTML = (est.fechas || []).map(f => {
         const colores = {
           "0": "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
@@ -583,10 +516,7 @@
         `;
       }).join("");
 
-      // 2. Consolidado estilo Flippity: Lista de puntos por motivo (Asistencia, Uniforme, Retos, Convivencia)
       let detallePuntosFlippity = [];
-
-      // Sumar motivos de asistencia y uniforme basados en sus fechas
       (est.fechas || []).forEach(f => {
         const txt = f.codigo.toUpperCase();
         if (txt.includes("0")) {
@@ -609,15 +539,13 @@
         }
       });
 
-      // Agregar retos y aciertos si los hay
       if ((est.retosCompletados || 0) > 0) {
-        detallePuntosFlippity.push({ motivo: `Retos lógicos completados (${est.retosCompletados})`, puntos: `+${est.retosCompletados * 5}`, tipo: "positivo", fecha: "Periodo" });
+        detallePuntosFlippity.push({ motivo: `Retos lógicos (${est.retosCompletados})`, puntos: `+${est.retosCompletados * 5}`, tipo: "positivo", fecha: "Periodo" });
       }
       if ((est.vecesAlFrente || 0) > 0) {
-        detallePuntosFlippity.push({ motivo: `Exposición / Pasó al frente (${est.vecesAlFrente} veces)`, puntos: `+${est.vecesAlFrente * 5}`, tipo: "positivo", fecha: "Periodo" });
+        detallePuntosFlippity.push({ motivo: `Pasó al frente (${est.vecesAlFrente} veces)`, puntos: `+${est.vecesAlFrente * 5}`, tipo: "positivo", fecha: "Periodo" });
       }
 
-      // Agregar reportes de convivencia e historial de descuentos
       const listaDescuentos = est.historialConvivencia || [];
       listaDescuentos.forEach(d => {
         detallePuntosFlippity.push({ motivo: d.motivo, puntos: `${d.puntos}`, tipo: "negativo", fecha: d.fecha || "Periodo" });
@@ -637,7 +565,6 @@
             `).join("")}
            </div>`;
 
-      // 3. Renderizado de Insignias
       const detalleInsignias = DEFINICION_INSIGNIAS.map(ins => {
         const activa = ins.evaluar(est, stats);
         return `
@@ -653,7 +580,6 @@
         `;
       }).join("");
 
-      // Estructura visual del Modal
       document.getElementById("modalContenido").innerHTML = `
         <div class="flex justify-between items-center p-4 rounded-xl bg-slate-900 border border-slate-800">
           <div>
@@ -686,38 +612,39 @@
       modal.classList.remove("hidden");
       modal.classList.add("flex");
     }
-    
+
+    function cerrarModal() {
+      const modal = document.getElementById("modalEstudiante");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
     // =========================================================================
-    // 7. SIMULADOR EN CLASE
+    // 7. SIMULADOR EN CLASE Y SINCRONIZACIÓN
     // =========================================================================
     function cargarSelectSimulador() {
       const select = document.getElementById("selectSimulador");
+      if (!select) return;
       select.innerHTML = estudiantes.map(e => `<option value="${e.id}">[${e.curso}] ${e.nombre}</option>`).join("");
     }
 
     function simularAccion(tipo, valor) {
-      const id = Number(document.getElementById("selectSimulador").value);
+      const select = document.getElementById("selectSimulador");
+      if (!select) return;
+      const id = Number(select.value);
       const est = estudiantes.find(e => e.id === id);
       if (!est) return;
 
       if (tipo === 'asistencia') {
         est.fechas.push({ fecha: "Hoy", codigo: valor });
-        if (valor === "0") est.coins += 1;
-        if (valor === "2") est.coins = Math.max(0, est.coins - 1);
-        if (valor === "U" || valor === "R") est.coins = Math.max(0, est.coins - 5);
-        if (valor === "E") est.coins = Math.max(0, est.coins - 20);
       } else if (tipo === 'reto') {
         est.retosCompletados = (est.retosCompletados || 0) + 1;
-        est.coins += valor;
       } else if (tipo === 'frente') {
         est.vecesAlFrente = (est.vecesAlFrente || 0) + 1;
-        est.coins += valor;
       } else if (tipo === 'hoja') {
         est.hojasOlidadas = (est.hojasOlidadas || 0) + 1;
-        est.coins = Math.max(0, est.coins - 5);
       } else if (tipo === 'convivencia') {
         est.faltasConvivencia[valor] = (est.faltasConvivencia[valor] || 0) + 1;
-        est.coins = Math.max(0, est.coins - 10);
       }
 
       renderizarEstudiantes();
@@ -726,18 +653,21 @@
 
     function cambiarPestana(nombre) {
       ["leaderboard", "misiones", "pactos", "simulador"].forEach(p => {
-        document.getElementById(`vista-${p}`).classList.toggle("hidden", p !== nombre);
+        const vista = document.getElementById(`vista-${p}`);
         const btn = document.getElementById(`tab-${p}`);
-        if (p === nombre) {
-          btn.className = "px-4 py-2 rounded-lg text-sm font-bold bg-emerald-500 text-slate-950 transition";
-        } else {
-          btn.className = "px-4 py-2 rounded-lg text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+        if (vista) vista.classList.toggle("hidden", p !== nombre);
+        if (btn) {
+          btn.className = (p === nombre)
+            ? "px-4 py-2 rounded-lg text-sm font-bold bg-emerald-500 text-slate-950 transition"
+            : "px-4 py-2 rounded-lg text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
         }
       });
     }
 
     function renderizarCatalogoInsignias() {
-      document.getElementById("catalogoInsignias").innerHTML = DEFINICION_INSIGNIAS.map(ins => `
+      const contenedor = document.getElementById("catalogoInsignias");
+      if (!contenedor) return;
+      contenedor.innerHTML = DEFINICION_INSIGNIAS.map(ins => `
         <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
           <div class="w-10 h-10 rounded-xl badge-active flex items-center justify-center text-xl shrink-0">${ins.icono}</div>
           <div>
@@ -748,7 +678,6 @@
       `).join("");
     }
 
-    // Sincronización automática con Google Drive
     async function sincronizarConDrive() {
       if (!APPS_SCRIPT_URL) return;
       try {
@@ -764,11 +693,13 @@
       }
     }
 
-    // Inicializar
-    cargarSelectSimulador();
-    renderizarCatalogoInsignias();
-    renderizarEstudiantes();
-    sincronizarConDrive();
+    // INICIALIZACIÓN AUTOMÁTICA
+    document.addEventListener("DOMContentLoaded", () => {
+      cargarSelectSimulador();
+      renderizarCatalogoInsignias();
+      renderizarEstudiantes();
+      sincronizarConDrive();
+    });
   </script>
 </body>
 </html>
