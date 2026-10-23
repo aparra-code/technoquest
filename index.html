@@ -307,8 +307,8 @@
 
     let cursoActual = "TODOS";
 
-    // =========================================================================
-    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (CON SOPORTE PARA "0" Y TABLA COMPLETA)
+// =========================================================================
+    // 4. CÁLCULO DE CORAZONES Y TECNO COINS (SIN DOBLE SUMA)
     // =========================================================================
     function calcularEstadisticas(est) {
       let asistencias = 0;      
@@ -320,28 +320,27 @@
       let puntosAsistenciaCalculados = 0;
 
       (est.fechas || []).forEach(reg => {
-        const textoOriginal = String(reg.codigo || "").toUpperCase().trim();
+        const txt = String(reg.codigo || "").toUpperCase().trim();
         
-        const tieneAsistencia = textoOriginal === "0" || textoOriginal === "O" || textoOriginal.startsWith("0") || textoOriginal.includes("0");
-        const tieneFalta = textoOriginal.includes("2");
-        const tieneUniforme = textoOriginal.includes("U");
-        const tieneRetardo = textoOriginal.includes("R");
-        const tieneEvasion = textoOriginal.includes("E");
+        const esAsistenciaPura = txt === "0" || txt === "O" || txt === "⃠";
+        const tieneAsistencia = esAsistenciaPura || txt.includes("0") || txt.includes("O") || txt.includes("⃠");
+        const tieneFalta = txt.includes("2");
+        const tieneUniformeFalla = txt.includes("U");
+        const tieneRetardo = txt.includes("R");
+        const tieneEvasion = txt.includes("E");
 
-        if (tieneAsistencia) {
+        if (tieneAsistencia && !tieneFalta) {
           asistencias++;
-          puntosAsistenciaCalculados += 1; // Asistencia base: +1 coin
-
-          if (!tieneUniforme) {
-            puntosAsistenciaCalculados += 5; // Bono uniforme impecable
+          puntosAsistenciaCalculados += 1; // +1 Asistencia
+          if (!tieneUniformeFalla) {
+            puntosAsistenciaCalculados += 5; // +5 Bono uniforme
           }
         }
-
         if (tieneFalta) {
           faltasSinExcusa++;
           puntosAsistenciaCalculados -= 1;
         }
-        if (tieneUniforme) {
+        if (tieneUniformeFalla) {
           uniforme++;
           puntosAsistenciaCalculados -= 5;
         }
@@ -361,8 +360,8 @@
       const corazonesTotales = Math.max(0, corazonesBase + corazonesGanados - corazonesPerdidos);
       const maxCorazonesVisuales = Math.max(5, Math.ceil(corazonesTotales));
 
-      // Suma total entre los puntos manuales de la tabla de Drive + el cálculo de asistencia
-      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : (est.coins || 0));
+      // Suma única: Puntos manuales de Drive + puntos calculados por asistencia
+      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : 0);
       const totalCoinsFinal = Math.max(0, baseManuales + puntosAsistenciaCalculados);
       
       est.coins = totalCoinsFinal;
@@ -488,8 +487,8 @@
       renderizarEstudiantes();
     }
 
-    // =========================================================================
-    // 6. MODAL DETALLADO ESTILO FLIPPITY
+   // =========================================================================
+    // 6. MODAL DETALLADO ESTILO FLIPPITY (SIN DUPLICAR FECHAS)
     // =========================================================================
     function abrirModal(id) {
       const est = estudiantes.find(e => e.id === id);
@@ -516,40 +515,14 @@
         `;
       }).join("");
 
+      // Unimos limpiamente los desgloses de la tabla de Drive y los de asistencia sin duplicar bucles
       let detallePuntosFlippity = [];
-      (est.fechas || []).forEach(f => {
-        const txt = f.codigo.toUpperCase();
-        if (txt.includes("0")) {
-          detallePuntosFlippity.push({ motivo: `Asistencia a clase (${f.codigo})`, puntos: "+1", tipo: "positivo", fecha: f.fecha });
-          if (!txt.includes("U")) {
-            detallePuntosFlippity.push({ motivo: "Bono Uniforme Impecable", puntos: "+5", tipo: "positivo", fecha: f.fecha });
-          }
-        }
-        if (txt.includes("2")) {
-          detallePuntosFlippity.push({ motivo: "Inasistencia sin excusa", puntos: "-1", tipo: "negativo", fecha: f.fecha });
-        }
-        if (txt.includes("U")) {
-          detallePuntosFlippity.push({ motivo: "Falla de Uniforme", puntos: "-5", tipo: "negativo", fecha: f.fecha });
-        }
-        if (txt.includes("R")) {
-          detallePuntosFlippity.push({ motivo: "Retardo / Llegada tarde", puntos: "-5", tipo: "negativo", fecha: f.fecha });
-        }
-        if (txt.includes("E")) {
-          detallePuntosFlippity.push({ motivo: "Evasión de clase", puntos: "-20", tipo: "negativo", fecha: f.fecha });
-        }
-      });
-
-      if ((est.retosCompletados || 0) > 0) {
-        detallePuntosFlippity.push({ motivo: `Retos lógicos (${est.retosCompletados})`, puntos: `+${est.retosCompletados * 5}`, tipo: "positivo", fecha: "Periodo" });
+      if (est.desglosesTabla && est.desglosesTabla.length > 0) {
+        detallePuntosFlippity = [...est.desglosesTabla];
       }
-      if ((est.vecesAlFrente || 0) > 0) {
-        detallePuntosFlippity.push({ motivo: `Pasó al frente (${est.vecesAlFrente} veces)`, puntos: `+${est.vecesAlFrente * 5}`, tipo: "positivo", fecha: "Periodo" });
+      if (est.desglosesAsistencia && est.desglosesAsistencia.length > 0) {
+        detallePuntosFlippity = [...detallePuntosFlippity, ...est.desglosesAsistencia];
       }
-
-      const listaDescuentos = est.historialConvivencia || [];
-      listaDescuentos.forEach(d => {
-        detallePuntosFlippity.push({ motivo: d.motivo, puntos: `${d.puntos}`, tipo: "negativo", fecha: d.fecha || "Periodo" });
-      });
 
       const desgloseFlippityHTML = detallePuntosFlippity.length === 0
         ? `<p class="text-xs text-slate-400">Aún no hay registros de puntajes detallados.</p>`
@@ -612,13 +585,6 @@
       modal.classList.remove("hidden");
       modal.classList.add("flex");
     }
-
-    function cerrarModal() {
-      const modal = document.getElementById("modalEstudiante");
-      modal.classList.add("hidden");
-      modal.classList.remove("flex");
-    }
-
     // =========================================================================
     // 7. SIMULADOR EN CLASE Y SINCRONIZACIÓN
     // =========================================================================
