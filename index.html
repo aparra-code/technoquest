@@ -267,7 +267,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxA0RAhIC8Vb5TfM_lAUKx_-L8bUtTGnaAhZhafA_43linD6lXOvUVwlsbCtSWSQ0N7/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcbSkUQMpDgmA9XzfyXH2LqLGy3S2tCCBkGPgrI1J2KftSAgJ8b3OkhfaPDD-_gWNZ/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -320,20 +320,21 @@
       let puntosAsistenciaCalculados = 0;
 
       (est.fechas || []).forEach(reg => {
-        const textoOriginal = String(reg.codigo || "").toUpperCase().trim();
+        const txt = String(reg.codigo || "").toUpperCase().trim();
         
-        const tieneAsistencia = textoOriginal === "0" || textoOriginal === "O" || textoOriginal.startsWith("0") || textoOriginal.includes("0");
-        const tieneFalta = textoOriginal.includes("2");
-        const tieneUniforme = textoOriginal.includes("U");
-        const tieneRetardo = textoOriginal.includes("R");
-        const tieneEvasion = textoOriginal.includes("E");
+        const esAsistenciaPura = txt === "0" || txt === "O";
+        const tieneAsistencia = txt.includes("0") || txt.includes("O");
+        const tieneFalta = txt.includes("2");
+        const tieneUniformeFalla = txt.includes("U");
+        const tieneRetardo = txt.includes("R");
+        const tieneEvasion = txt.includes("E");
 
-        if (tieneAsistencia) {
+        if (esAsistenciaPura || tieneAsistencia) {
           asistencias++;
-          puntosAsistenciaCalculados += 1; // Asistencia base: +1 coin
+          puntosAsistenciaCalculados += 1; // +1 Asistencia
 
-          if (!tieneUniforme) {
-            puntosAsistenciaCalculados += 5; // Bono uniforme impecable
+          if (!tieneUniformeFalla) {
+            puntosAsistenciaCalculados += 5; // +5 Bono uniforme impecable
           }
         }
 
@@ -341,7 +342,7 @@
           faltasSinExcusa++;
           puntosAsistenciaCalculados -= 1;
         }
-        if (tieneUniforme) {
+        if (tieneUniformeFalla) {
           uniforme++;
           puntosAsistenciaCalculados -= 5;
         }
@@ -361,7 +362,6 @@
       const corazonesTotales = Math.max(0, corazonesBase + corazonesGanados - corazonesPerdidos);
       const maxCorazonesVisuales = Math.max(5, Math.ceil(corazonesTotales));
 
-      // Suma total entre los puntos manuales de la tabla de Drive + el cálculo de asistencia
       const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : (est.coins || 0));
       const totalCoinsFinal = Math.max(0, baseManuales + puntosAsistenciaCalculados);
       
