@@ -161,7 +161,8 @@
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-cyan-400 mb-2">📜 Pactos de Aula y Reglas de Puntuación</h2>
         <p class="text-sm text-slate-300 mb-4">El sistema procesa automáticamente los siguientes registros de asistencia y convivencia:</p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center">
+        
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-center mb-6">
           <div class="p-3 rounded-xl bg-emerald-950/50 border border-emerald-700/50">
             <div class="text-xl font-gamer font-bold text-emerald-400">0</div>
             <div class="text-xs font-bold mt-1">Asistió</div>
@@ -193,6 +194,268 @@
             <div class="text-[11px] text-purple-300 mt-0.5">-20 tecnocoins</div>
           </div>
         </div>
+
+        <!-- SELECTOR DE CURSOS PARA PACTOS DE AULA -->
+        <div class="flex flex-wrap items-center gap-2 mb-4 pt-2 border-t border-slate-800">
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-bold mr-2">Selecciona el Curso:</span>
+          <button onclick="mostrarPactoCurso('802')" id="btn-pacto-802" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white transition">Curso 802</button>
+          <button onclick="mostrarPactoCurso('803')" id="btn-pacto-803" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Curso 803</button>
+          <button onclick="mostrarPactoCurso('804')" id="btn-pacto-804" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Curso 804</button>
+          <button onclick="mostrarPactoCurso('805')" id="btn-pacto-805" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Curso 805</button>
+          <button onclick="mostrarPactoCurso('806')" id="btn-pacto-806" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Curso 806</button>
+          <button onclick="mostrarPactoCurso('807')" id="btn-pacto-807" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Curso 807</button>
+        </div>
+
+        <!-- CONTENEDOR DE PACTO: CURSO 802 -->
+        <div id="pacto-curso-802" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4">
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-emerald-400">📋 Pacto de Aula y Criterios • Curso 802</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Aplicaciones (factura, nómina)</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Vínculos, animaciones y presentaciones</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Plantillas y portales digitales</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Seguimiento y lectura de periodo</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos, asistencia y participación</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
+            <em>Nota (802):</em> El 10% de Electricidad se redistribuyó sumando un 5% a Hojas de cálculo y un 5% a PowerPoint.
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE PACTO: CURSO 803 -->
+        <div id="pacto-curso-803" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios • Curso 803</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Funciones, gráficos, factura, nómina</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% dibujo)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint</span><span class="text-[10px] text-slate-400">Vínculos, animaciones y presentaciones</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% dibujo)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Internet</span><span class="text-[10px] text-slate-400">Estructura básica y plantillas</span></div>
+              <span class="font-bold text-amber-400">5% <span class="text-[9px] text-slate-400">(sin Sites)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Incluye Google Sites + etapas del proyecto</span></div>
+              <span class="font-bold text-amber-400">40% <span class="text-[9px] text-slate-400">(+10% Sites)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Seguimiento y lectura de periodo</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos, asistencia y participación</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
+            <em>Nota (803):</em> Dibujo técnico se redistribuyó (5% Excel, 5% PowerPoint) y Google Sites se integró al Proyecto final[cite: 9].
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE PACTO: CURSO 804 -->
+        <div id="pacto-curso-804" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-indigo-400">📋 Pacto de Aula y Criterios • Curso 804</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Aplicaciones (factura, nómina)</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Vínculos, animaciones y presentaciones</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Portales digitales y plantillas</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Seguimiento y lectura de periodo</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos, asistencia y participación</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
+            <em>Nota (804):</em> El 10% de Electricidad se redistribuyó sumando un 5% a Hojas de cálculo y un 5% a PowerPoint.
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE PACTO: CURSO 805 -->
+        <div id="pacto-curso-805" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios • Curso 805</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📐 Dibujo técnico</span><span class="text-[10px] text-slate-400">Vistas y conversión a isométrico</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Formato, operaciones, factura y nómina</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Presentaciones y animaciones</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Plantillas y portales</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final (Incluye Circuitos)</span><span class="text-[10px] text-slate-400">Etapas del proyecto + Elaboración de circuitos</span></div>
+              <span class="font-bold text-emerald-400">30% <span class="text-[9px] text-slate-400">(20% + 10% circuitos)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento 2 y Cuento 3</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos y asistencia</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
+            <em>Nota (805):</em> El proyecto final incluye la elaboración de circuitos de electricidad.
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE PACTO: CURSO 806 -->
+        <div id="pacto-curso-806" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-emerald-400">📋 Pacto de Aula y Criterios • Curso 806</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Aplicaciones (factura, nómina)</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Presentaciones y animaciones</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Plantillas y portales digitales</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento 2 y Cuento 3</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos y asistencia</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
+            <em>Nota (806):</em> El 10% de Electricidad se quitó y se repartió sumando un 5% a Hojas de cálculo Excel y un 5% a Google Sites[cite: 12].
+          </div>
+        </div>
+
+        <!-- CONTENEDOR DE PACTO: CURSO 807 (Electricidad se reparte entre Excel y Google Sites) -->
+        <div id="pacto-curso-807" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios • Curso 807</h3>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Formato, operaciones, factura y nómina</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Presentaciones y animaciones</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Plantillas y portales digitales</span></div>
+              <span class="font-bold text-emerald-400">15% <span class="text-[9px] text-slate-400">(+5% ajustado)</span></span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Seguimiento de periodo</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos y asistencia</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800 text-[11px] text-slate-400">
+            <em>Nota (807):</em> El 10% de Electricidad se quitó y se repartió sumando un 5% a Hojas de cálculo Excel y un 5% a Google Sites[cite: 13].
+          </div>
+        </div>
+
       </div>
 
       <div class="card-glass rounded-2xl p-6">
