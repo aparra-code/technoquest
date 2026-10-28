@@ -64,6 +64,9 @@
         <button onclick="cambiarPestana('simulador')" id="tab-simulador" class="px-4 py-2 rounded-lg text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
           ⚡ Simulador en Clase
         </button>
+        <button onclick="cambiarPestana('notas')" id="tab-notas" class="px-4 py-2 rounded-lg text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">
+          📊 Mis Notas por Curso
+        </button>
       </nav>
     </div>
   </header>
@@ -413,7 +416,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
               <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Funciones y gráficos, factura y nómina</span></div>
-              <span class="font-bold text-emerald-400">15%/span>
+              <span class="font-bold text-emerald-400">15%</span>
             </div>
             <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
               <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones-Taller herramientas WEB</span></div>
@@ -495,6 +498,40 @@
       </div>
     </section>
 
+    <!-- PESTAÑA 5 CONSULTA DE NOTAS PRIVADAS POR CLAVE -->
+    <section id="vista-notas" class="hidden space-y-6">
+      <div class="card-glass rounded-2xl p-6 max-w-xl mx-auto text-center space-y-4">
+        <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-3xl mx-auto shadow-inner">
+          🔐
+        </div>
+        <h2 class="font-gamer text-xl font-bold text-white">Portal Privado de Calificaciones</h2>
+        <p class="text-xs text-slate-300">
+          Ingresa tu nombre completo y tu clave secreta personal para consultar tu boletín definitivo ponderado según el pacto de aula de tu curso.
+        </p>
+
+        <div class="space-y-3 pt-2">
+          <input
+            type="text"
+            id="inputBusquedaAlumno"
+            placeholder="Tu Nombre Completo..."
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 text-center"
+          />
+          <input
+            type="password"
+            id="inputClaveAlumno"
+            placeholder="Tu Clave Secreta..."
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 text-center"
+          />
+          <button onclick="verificarYMostrarNotas()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition shadow-lg">
+            🔓 Ver Mis Notas del Periodo
+          </button>
+        </div>
+      </div>
+
+      <!-- Contenedor donde aparecerá el boletín privado del estudiante -->
+      <div id="resultadoBoletinPrivado" class="max-w-2xl mx-auto"></div>
+    </section>
+
   </main>
 
   <!-- MODAL DETALLE DE JUGADOR -->
@@ -516,7 +553,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw33Hb8CPmX2oQuJsDqzdvnleeJfxpDzwytxPLrj3IKASOJi3-VpUG4VmHZLZcJCQD0/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyIMJWjTaBdil1jt2laueo5kEHbFarIkjKu7qzLCvqK5pKVfEOxZt9TL-BdFkWjJFvZ/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -916,6 +953,64 @@
           </div>
         </div>
       `).join("");
+    }
+
+    function verificarYMostrarNotas() {
+      const nombreInput = document.getElementById("inputBusquedaAlumno").value.toLowerCase().trim();
+      const claveInput = document.getElementById("inputClaveAlumno").value.trim();
+      const contenedorResultado = document.getElementById("resultadoBoletinPrivado");
+
+      if (!nombreInput || !claveInput) {
+        alert("Por favor ingresa tu nombre y tu clave secreta.");
+        return;
+      }
+
+      // Buscamos al estudiante que coincida en nombre y clave
+      const estudianteEncontrado = estudiantes.find(e => 
+        e.nombre.toLowerCase().includes(nombreInput) && String(e.clave).trim() === claveInput
+      );
+
+      if (!estudianteEncontrado) {
+        contenedorResultado.innerHTML = `
+          <div class="card-glass rounded-2xl p-6 text-center border-l-4 border-rose-500">
+            <p class="text-sm font-bold text-rose-400">❌ Credenciales incorrectas</p>
+            <p class="text-xs text-slate-300 mt-1">Verifica que tu nombre esté bien escrito y que tu clave secreta sea correcta.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Si coincide, generamos su boletín privado basado en los porcentajes
+      contenedorResultado.innerHTML = `
+        <div class="card-glass rounded-2xl p-6 space-y-4 border border-indigo-500/40 shadow-2xl">
+          <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+            <div>
+              <span class="px-2.5 py-1 rounded text-xs font-bold bg-indigo-500/20 text-indigo-300">Curso ${estudianteEncontrado.curso}</span>
+              <h3 class="font-gamer text-lg font-bold text-white mt-1">${estudianteEncontrado.nombre}</h3>
+            </div>
+            <div class="text-right">
+              <span class="font-gamer text-2xl font-extrabold text-emerald-400">${estudianteEncontrado.nota.toFixed(1)}</span>
+              <p class="text-[10px] text-slate-400 uppercase">Nota Definitiva</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+            <p class="text-xs font-bold uppercase text-slate-400">📊 Resumen de Acumulados</p>
+            <div class="flex justify-between text-xs py-1 border-b border-slate-800/60">
+              <span class="text-slate-300">Total Tecno Coins Acumuladas:</span>
+              <span class="font-bold text-amber-400">🪙 ${estudianteEncontrado.coins} pts</span>
+            </div>
+            <div class="flex justify-between text-xs py-1 border-b border-slate-800/60">
+              <span class="text-slate-300">Nivel de Vida Actual:</span>
+              <span class="font-bold text-rose-400">❤️ ${calcularEstadisticas(estudianteEncontrado).corazonesTotales.toFixed(2)}</span>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-slate-400 text-center">
+            🔒 Esta información es confidencial y solo accesible mediante tu clave personal institucional.
+          </p>
+        </div>
+      `;
     }
 
     async function sincronizarConDrive() {
