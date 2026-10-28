@@ -914,7 +914,7 @@
     }
 
     function cambiarPestana(nombre) {
-      ["leaderboard", "misiones", "pactos", "simulador"].forEach(p => {
+      ["leaderboard", "misiones", "pactos", "simulador", "notas"].forEach(p => {
         const vista = document.getElementById(`vista-${p}`);
         const btn = document.getElementById(`tab-${p}`);
         if (vista) vista.classList.toggle("hidden", p !== nombre);
