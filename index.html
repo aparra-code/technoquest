@@ -978,7 +978,6 @@
         return;
       }
 
-      // Buscamos coincidencia exacta o parcial de nombre y clave
       const estudianteEncontrado = estudiantes.find(e => {
         const nombreEst = String(e.nombre || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
         const claveEst = String(e.clave || "").trim();
@@ -986,28 +985,53 @@
       });
 
       if (!estudianteEncontrado) {
-        // Buscamos si al menos el nombre existe para darte una pista clara de por qué falló
-        const coincideNombre = estudiantes.find(e => 
-          String(e.nombre || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().includes(nombreInput)
-        );
-
-        let mensajeError = "Verifica que tu nombre esté bien escrito y que tu clave secreta sea correcta.";
-        if (coincideNombre) {
-          mensajeError = `⚠️ Encontramos el nombre <strong>"${coincideNombre.nombre}"</strong>, pero la clave ingresada no coincide con la registrada en la Columna B (Clave actual en sistema: <em>"${coincideNombre.clave || 'Vacía'}"</em>).`;
-        } else {
-          mensajeError = `❌ No se encontró ningún estudiante con ese nombre en los registros (${estudiantes.length} alumnos cargados en total).`;
-        }
-
         contenedorResultado.innerHTML = `
           <div class="card-glass rounded-2xl p-6 text-center border-l-4 border-rose-500 space-y-2">
             <p class="text-sm font-bold text-rose-400">❌ Credenciales incorrectas</p>
-            <p class="text-xs text-slate-300">${mensajeError}</p>
+            <p class="text-xs text-slate-300">Verifica que tu nombre esté bien escrito y que tu clave secreta sea correcta.</p>
           </div>
         `;
         return;
       }
 
-      // Si todo es correcto, mostramos el boletín privado
+      // Generamos el HTML para listar las notas parciales encontradas
+      let notasParcialesHTML = `<p class="text-xs text-slate-400 text-center py-2">No hay notas registradas o calificadas todavía.</p>`;
+      
+      if (estudianteEncontrado.notasPorColumna && estudianteEncontrado.notasPorColumna.length > 0) {
+        notasParcialesHTML = estudianteEncontrado.notasPorColumna.map(n => `
+          <div class="flex justify-between items-center text-xs py-1.5 border-b border-slate-800/80">
+            <span class="text-slate-300 capitalize">${n.titulo}</span>
+            <span class="font-gamer font-bold text-emerald-400">${n.nota.toFixed(1)}</span>
+          </div>
+        `).join("");
+      }
+
+      // Si el estudiante tiene desgloses de tabla generales
+      let desglosesHTML = "";
+      if (estudianteEncontrado.desglosesTabla && estudianteEncontrado.desglosesTabla.length > 0) {
+        // Filtramos solo las que parecen calificaciones numéricas o actividades clave
+        const actividades = estudianteEncontrado.desglosesTabla.filter(d => !isNaN(d.puntos) || Number(d.puntos) > 0);
+        if (actividades.length > 0) {
+          desglosesHTML = `
+            <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2 mt-3">
+              <p class="text-xs font-bold uppercase text-slate-400">📝 Registro de Trabajos y Puntos</p>
+              <div class="max-h-40 overflow-y-auto space-y-1.5 pr-1">
+                ${actividades.map(act => `
+                  <div class="flex justify-between items-center text-xs bg-slate-950/60 p-2 rounded-lg border border-slate-800/60">
+                    <div>
+                      <span class="text-white font-medium">${act.motivo}</span>
+                      <span class="text-[10px] text-slate-400 ml-1.5">📅 ${act.fecha}</span>
+                    </div>
+                    <span class="font-gamer font-bold ${act.tipo === 'positivo' ? 'text-emerald-400' : 'text-rose-400'}">${act.puntos}</span>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      // Renderizamos el boletín completo con nota definitiva, notas parciales y puntajes
       contenedorResultado.innerHTML = `
         <div class="card-glass rounded-2xl p-6 space-y-4 border border-indigo-500/40 shadow-2xl">
           <div class="flex justify-between items-start border-b border-slate-800 pb-4">
@@ -1021,8 +1045,17 @@
             </div>
           </div>
 
+          <!-- Desglose de Notas por Categoría / Columna Naranja -->
           <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-            <p class="text-xs font-bold uppercase text-slate-400">📊 Resumen de Acumulados</p>
+            <p class="text-xs font-bold uppercase text-slate-400 mb-1">📊 Calificaciones Parciales (Columnas de Periodo)</p>
+            <div class="space-y-1">
+              ${notasParcialesHTML}
+            </div>
+          </div>
+
+          <!-- Resumen de Acumulados y Vidas -->
+          <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+            <p class="text-xs font-bold uppercase text-slate-400">⚡ Estado de Juego</p>
             <div class="flex justify-between text-xs py-1 border-b border-slate-800/60">
               <span class="text-slate-300">Total Tecno Coins Acumuladas:</span>
               <span class="font-bold text-amber-400">🪙 ${estudianteEncontrado.coins || 0} pts</span>
@@ -1033,13 +1066,14 @@
             </div>
           </div>
 
-          <p class="text-[11px] text-slate-400 text-center">
+          ${desglosesHTML}
+
+          <p class="text-[11px] text-slate-400 text-center pt-2">
             🔒 Esta información es confidencial y solo accesible mediante tu clave personal institucional.
           </p>
         </div>
       `;
     }
-
     async function sincronizarConDrive() {
       if (!APPS_SCRIPT_URL) return;
       try {
