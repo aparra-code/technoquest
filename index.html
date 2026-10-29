@@ -553,7 +553,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzboeuTJTozMi9H3Ue8mniBI22yhAfWqXC40a-AgJESfSj8T3lWKqrcaU1Mj6nREGX2/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwood5iZ8vK2JRKSn2B0OVqb2cLWo70-EDemr65vm4t_rGAm5ULAqBoBwUFe4_Uuskm/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -998,15 +998,20 @@
       let desgloseNotasHTML = `<p class="text-xs text-slate-400 text-center py-2">No hay calificaciones registradas todavía.</p>`;
       
       if (estudianteEncontrado.desgloseNotas && estudianteEncontrado.desgloseNotas.length > 0) {
-        desgloseNotasHTML = estudianteEncontrado.desgloseNotas.map(d => `
-          <div class="flex justify-between items-center text-xs py-2 border-b border-slate-800/80">
-            <div>
-              <span class="text-white font-medium block">${d.categoria}</span>
-              <span class="text-[10px] text-indigo-300">Ponderación: ${d.porcentaje}</span>
+        desgloseNotasHTML = estudianteEncontrado.desgloseNotas.map(d => {
+          let textoNota = d.nota !== null ? d.nota.toFixed(1) : "Sin calificar";
+          let colorNota = d.nota !== null ? "text-emerald-400" : "text-slate-500 text-xs";
+          
+          return `
+            <div class="flex justify-between items-center text-xs py-2 border-b border-slate-800/80">
+              <div>
+                <span class="text-white font-medium block">${d.categoria}</span>
+                <span class="text-[10px] text-indigo-300">Ponderación: ${d.porcentaje}</span>
+              </div>
+              <span class="font-gamer font-bold ${colorNota}">${textoNota}</span>
             </div>
-            <span class="font-gamer font-bold text-emerald-400 text-sm">${d.nota.toFixed(1)}</span>
-          </div>
-        `).join("");
+          `;
+        }).join("");
       }
 
       // Renderizamos el boletín privado limpio
