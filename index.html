@@ -553,7 +553,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwrRDiwtKENfOF9OlRp8Ym3GQMnzTkiOANLgQY9vfdNmzlfSZkDvGti4b2Wpi1Wssx/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwI-kYXdxxsZrfYGAtSmaxVMSVYdjxwPLF87qMfQpFx2EEbpvNGVuYy8NNmeYEE_Ypn/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -780,12 +780,15 @@
     // =========================================================================
     // 6. MODAL DETALLADO ESTILO FLIPPITY
     // =========================================================================
-    function abrirModal(id) {
+  function abrirModal(id) {
       const est = estudiantes.find(e => e.id === id);
       if (!est) return;
       const stats = calcularEstadisticas(est);
 
-      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${(est.nota || 4.5).toFixed(1)}`;
+      // AQUÍ ESTÁ LA CORRECCIÓN: Usamos est.nota (o 3.0 por defecto si aún no tiene notas)
+      const notaFinalEstudiante = (est.nota !== undefined && est.nota !== null) ? Number(est.nota).toFixed(1) : "0.0";
+
+      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${notaFinalEstudiante}`;
       document.getElementById("modalNombre").textContent = est.nombre;
 
       const historialFechasHTML = (est.fechas || []).map(f => {
