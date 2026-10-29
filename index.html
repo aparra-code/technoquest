@@ -553,7 +553,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNyVjekbeEQ8xkNl6mZAHH2KQEckTbNpRaRMrehdQONnp7OP_oYhZnt_R77BXS-9VT/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0GH-G_yH5sBtenbzxOdhOZp4Qld-8Vjd5HaOlWGxlO5sg1tg9BzGCagLcrUMV8iXn/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -999,8 +999,18 @@
       
       if (estudianteEncontrado.desgloseNotas && estudianteEncontrado.desgloseNotas.length > 0) {
         desgloseNotasHTML = estudianteEncontrado.desgloseNotas.map(d => {
-          let textoNota = d.nota !== null ? d.nota.toFixed(1) : "Sin calificar";
-          let colorNota = d.nota !== null ? "text-emerald-400" : "text-slate-500 text-xs";
+          let textoNota = "Sin calificar";
+          let colorNota = "text-slate-500 text-xs";
+          
+          if (d.res !== null && d.res !== undefined) {
+            if (d.res.noEntrego) {
+              textoNota = `No entregó (0.0)`;
+              colorNota = "text-rose-400 font-bold text-xs";
+            } else {
+              textoNota = d.res.valor.toFixed(1);
+              colorNota = "text-emerald-400 font-bold";
+            }
+          }
           
           return `
             <div class="flex justify-between items-center text-xs py-2 border-b border-slate-800/80">
@@ -1008,7 +1018,7 @@
                 <span class="text-white font-medium block">${d.categoria}</span>
                 <span class="text-[10px] text-indigo-300">Ponderación: ${d.porcentaje}</span>
               </div>
-              <span class="font-gamer font-bold ${colorNota}">${textoNota}</span>
+              <span class="font-gamer ${colorNota}">${textoNota}</span>
             </div>
           `;
         }).join("");
