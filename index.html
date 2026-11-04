@@ -553,7 +553,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby_aQ3ohFTxQHXeSN0zjaQ8oLqzsMDdjmcx4K4lGYmS6MPs2v_ZUBfZW6tnTJcbU5Uv/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyM8GSs0oh8TQV8a13n1LkXIRL9m-UxbduVqWieyuqG7q9aI6ECFGzBrP1xxZ5VU43l/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
@@ -1002,31 +1002,39 @@
       
       if (estudianteEncontrado.desgloseNotas && estudianteEncontrado.desgloseNotas.length > 0) {
         desgloseNotasHTML = estudianteEncontrado.desgloseNotas.map(d => {
-          let textoNota = "Sin calificar";
-          let colorNota = "text-slate-500 text-xs";
-          
+          let contenidoSubnotas = `<span class="text-slate-500 text-xs">Sin calificar</span>`;
+          let valorPromedioTexto = "";
+
           if (d.res !== null && d.res !== undefined) {
-            if (d.res.noEntrego) {
-              textoNota = `No entregó: ${d.res.detalleNoEntrego} (${d.res.valor.toFixed(1)})`;
-              colorNota = "text-rose-400 font-bold text-xs";
-            } else {
-              textoNota = d.res.valor.toFixed(1);
-              colorNota = "text-emerald-400 font-bold";
+            valorPromedioTexto = `<span class="font-gamer text-emerald-400 text-sm font-bold ml-2">Promedio: ${d.res.valor.toFixed(1)}</span>`;
+            
+            if (d.res.subnotas && d.res.subnotas.length > 0) {
+              contenidoSubnotas = d.res.subnotas.map(sub => {
+                let colorNota = sub.nota === 0 ? "text-rose-400 font-bold" : "text-white";
+                return `<div class="flex justify-between text-[11px] py-0.5 pl-2 border-l border-indigo-500/30 my-1">
+                          <span class="text-slate-300">${sub.titulo}:</span>
+                          <span class="${colorNota}">${sub.nota.toFixed(1)} ${sub.nota === 0 ? '(No entregó)' : ''}</span>
+                        </div>`;
+              }).join("");
             }
           }
-          
+
           return `
-            <div class="flex justify-between items-center text-xs py-2 border-b border-slate-800/80">
-              <div>
-                <span class="text-white font-medium block">${d.categoria}</span>
-                <span class="text-[10px] text-indigo-300">Ponderación: ${d.porcentaje}</span>
+            <div class="py-2 border-b border-slate-800/80">
+              <div class="flex justify-between items-center text-xs">
+                <div>
+                  <span class="text-white font-semibold block">${d.categoria}</span>
+                  <span class="text-[10px] text-indigo-300">Ponderación: ${d.porcentaje}</span>
+                </div>
+                ${valorPromedioTexto}
               </div>
-              <span class="font-gamer ${colorNota}">${textoNota}</span>
+              <div class="mt-1 bg-slate-900/50 p-1.5 rounded">
+                ${contenidoSubnotas}
+              </div>
             </div>
           `;
         }).join("");
       }
-
       // Renderizamos el boletín privado limpio
       contenedorResultado.innerHTML = `
         <div class="card-glass rounded-2xl p-6 space-y-5 border border-indigo-500/40 shadow-2xl">
