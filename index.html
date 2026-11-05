@@ -509,6 +509,13 @@
           Ingresa tu nombre completo y tu clave secreta personal para consultar tu boletín definitivo ponderado según el pacto de aula de tu curso.
         </p>
 
+<div class="bg-slate-900/80 border border-indigo-500/30 p-4 rounded-xl text-slate-300 text-xs mb-4">
+  <h4 class="text-indigo-400 font-bold mb-1">💡 ¿Cómo ingresar a tu portal?</h4>
+  <p class="mb-2"><strong>Usuario:</strong> Escribe tu nombre completo en orden institucional (Apellidos y Nombres).</p>
+  <p class="mb-1"><strong>Contraseña:</strong> Primeras 3 letras de tu primer apellido + primeras 3 letras de tu segundo apellido + tu curso + tu número de lista (todo en minúsculas sin espacios).</p>
+  <p class="text-[11px] text-slate-400 italic">Ejemplo: Si te llamas <em>Juan Carlos Pérez Gómez</em>, eres del curso <em>802</em> y tu número de lista es el <em>5</em>, tu contraseña es: <code class="text-emerald-400">pergom80205</code></p>
+</div>
+        
         <div class="space-y-3 pt-2">
           <input
             type="text"
@@ -532,6 +539,61 @@
       <div id="resultadoBoletinPrivado" class="max-w-2xl mx-auto"></div>
     </section>
 
+    <!-- Vista Panel Docente -->
+<div id="panelDocente" class="hidden bg-slate-900 p-6 rounded-2xl border border-slate-700 mt-6">
+  <h3 class="text-xl font-bold text-emerald-400 mb-4">📋 Consolidado de Notas por Curso (Vista Docente)</h3>
+  <div class="flex gap-4 mb-4">
+    <select id="selectCursoDocente" onchange="renderizarConsolidadoDocente()" class="bg-slate-800 text-white p-2 rounded border border-slate-600">
+      <option value="802">Curso 802</option>
+      <option value="803">Curso 803</option>
+      <option value="804">Curso 804</option>
+      <option value="805">Curso 805</option>
+      <option value="806">Curso 806</option>
+      <option value="807">Curso 807</option>
+    </select>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="w-table text-left text-xs text-slate-300">
+      <thead>
+        <tr class="border-b border-slate-700 text-indigo-400">
+          <th class="p-2">Estudiante</th>
+          <th class="p-2">Coins</th>
+          <th class="p-2">Nota Coins</th>
+          <th class="p-2">Definitiva Periodo</th>
+        </tr>
+      </thead>
+      <tbody id="tablaConsolidadoBody">
+        <!-- Se llena dinámicamente -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  function renderizarConsolidadoDocente() {
+    const cursoSeleccionado = document.getElementById("selectCursoDocente").value;
+    const tbody = document.getElementById("tablaConsolidadoBody");
+    tbody.innerHTML = "";
+
+    // Filtramos y ordenamos alfabéticamente por nombre
+    const estudiantesCurso = estudiantes
+      .filter(e => e.curso === cursoSeleccionado)
+      .sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+    estudiantesCurso.forEach(est => {
+      const tr = document.createElement("tr");
+      tr.className = "border-b border-slate-800 hover:bg-slate-800/50";
+      tr.innerHTML = `
+        <td class="p-2 font-semibold text-white">${est.nombre}</td>
+        <td class="p-2">${est.coins} pts</td>
+        <td class="p-2">${est.desgloseNotas.find(d => d.categoria.includes("Coins"))?.res?.valor.toFixed(1) || '0.0'}</td>
+        <td class="p-2 font-bold text-emerald-400 text-sm">${Number(est.nota).toFixed(1)}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+</script>
+
   </main>
 
   <!-- MODAL DETALLE DE JUGADOR -->
@@ -553,7 +615,7 @@
     // =========================================================================
     // 1. URL DE GOOGLE APPS SCRIPT
     // =========================================================================
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_7Ab7QXQAVX0z55toY_HzWOoG7o3g-3XKssxKFb4_1n8Fy0IW0AR5WPGC9SuTATHK/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzFCyjsEjeIUm1ubh8kAX2gZz8YpK6R67I5ap-a25GhLcKn8KhRoJzCUgw-lNYbOhYh/exec";
 
     // =========================================================================
     // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
