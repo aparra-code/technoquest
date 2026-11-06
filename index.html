@@ -51,7 +51,7 @@
       </div>
 
       <!-- NAVEGACIÓN PRINCIPAL -->
-      <nav class="flex flex-wrap gap-2 items-center">
+      <nav class="flex flex-wrap gap-2">
         <button onclick="cambiarPestana('leaderboard')" id="tab-leaderboard" class="px-4 py-2 rounded-lg text-sm font-bold bg-emerald-500 text-slate-950 transition">
           🏆 Leaderboard & Vidas
         </button>
@@ -79,6 +79,7 @@
 
     <!-- PESTAÑA 1: LEADERBOARD, CORAZONES E INSIGNIAS -->
     <section id="vista-leaderboard">
+      <!-- Barra de Cursos 802 - 807 y Buscador -->
       <div class="card-glass rounded-2xl p-4 mb-6 flex flex-wrap items-center justify-between gap-4">
         <div class="flex flex-wrap items-center gap-2" id="ContenedorBotonesCurso">
           <span class="text-xs uppercase tracking-wider text-slate-400 font-bold mr-1">Curso:</span>
@@ -102,6 +103,7 @@
         </div>
       </div>
 
+      <!-- Resumen de Regla de Corazones y Puntos -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div class="card-glass rounded-xl p-4 border-l-4 border-rose-500">
           <p class="text-xs text-slate-400 uppercase font-bold">Regla de Corazones de Vida</p>
@@ -118,11 +120,12 @@
         <div class="card-glass rounded-xl p-4 border-l-4 border-emerald-400">
           <p class="text-xs text-slate-400 uppercase font-bold">11 Insignias Desbloqueables</p>
           <p class="text-sm mt-1 text-slate-200">
-            Insignias por asistencia, puntualidad, portar tu hoja de desafio y convivencia sana en el aula.
+            Insignias por asistencia, puntualidad, portar tu hoja de desafio, responder el desafio correctamente al frente y <strong>convivencia sana</strong> en el aula.
           </p>
         </div>
       </div>
 
+      <!-- Listado de Tarjetas Gamer -->
       <div id="gridEstudiantes" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </section>
 
@@ -131,6 +134,7 @@
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-emerald-400 mb-2">🚀 Misiones del Tercer Periodo (Grados 802 - 807)</h2>
         <p class="text-sm text-slate-300 mb-6">Guías, planillas de Excel, Canva, Genially y actividades evaluativas integradas.</p>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
             <div>
@@ -143,6 +147,7 @@
               <a href="#" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white">Ver Instrucciones</a>
             </div>
           </div>
+
           <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 flex flex-col justify-between">
             <div>
               <span class="px-2.5 py-1 text-xs font-bold rounded-full bg-cyan-500/20 text-cyan-300">Misión #2 • Google Sites & Portales Web</span>
@@ -183,12 +188,12 @@
           <div class="p-3 rounded-xl bg-amber-950/50 border border-amber-700/50">
             <div class="text-xl font-gamer font-bold text-amber-400">U</div>
             <div class="text-xs font-bold mt-1">Falla uniforme</div>
-            <div class="text-[11px] text-amber-300 mt-0.5">-5 tecnocoins</div>
+            <div class="text-[11px] text-amber-300 mt-0.5">-5 tecnocoins y Bloquea 🛡️</div>
           </div>
           <div class="p-3 rounded-xl bg-orange-950/50 border border-orange-700/50">
             <div class="text-xl font-gamer font-bold text-orange-400">R</div>
             <div class="text-xs font-bold mt-1">Retardo</div>
-            <div class="text-[11px] text-orange-300 mt-0.5">-5 tecnocoins</div>
+            <div class="text-[11px] text-orange-300 mt-0.5">-5 tecnocoins y Bloquea ⚡</div>
           </div>
           <div class="p-3 rounded-xl bg-purple-950/50 border border-purple-700/50">
             <div class="text-xl font-gamer font-bold text-purple-400">E</div>
@@ -197,6 +202,7 @@
           </div>
         </div>
 
+        <!-- SELECTOR DE CURSOS PARA PACTOS DE AULA -->
         <div class="flex flex-wrap items-center gap-2 mb-4 pt-2 border-t border-slate-800">
           <span class="text-xs uppercase tracking-wider text-slate-400 font-bold mr-2">Selecciona el Curso:</span>
           <button onclick="mostrarPactoCurso('802')" id="btn-pacto-802" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white transition">Curso 802</button>
@@ -207,100 +213,235 @@
           <button onclick="mostrarPactoCurso('807')" id="btn-pacto-807" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition">Curso 807</button>
         </div>
 
-        <!-- CONTENEDORES DE PACTO (802 A 807) -->
+        <!-- CONTENEDOR DE PACTO: CURSO 802 -->
         <div id="pacto-curso-802" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4">
-          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-emerald-400">📋 Pacto de Aula • Curso 802</h3>
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-emerald-400">📋 Pacto de Aula y Criterios • Curso 802</h3>
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📊 Hojas de cálculo Excel (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>💻 PowerPoint, Genially y Canva (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🌐 Google Sites (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🚀 Proyecto Final (30%)</span><span class="font-bold text-amber-400">30%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📚 Plan Lector (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>⭐ Tecno Coins (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📝 Autoeval. & Coeval. (10%)</span><span class="font-bold text-amber-400">10%</span></div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Aplicaciones (factura, nómina)</span></div>
+              <span class="font-bold text-emerald-400">15%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones-Taller herramientas WEB</span></div>
+              <span class="font-bold text-emerald-400">15% </span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Portafolio Digital en Google Sites</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento "Círculo Vicioso"</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Tecno Coins)</span><span class="text-[10px] text-slate-400">Retos, asistencia y participación</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
           </div>
         </div>
 
+        <!-- CONTENEDOR DE PACTO: CURSO 803 -->
         <div id="pacto-curso-803" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
-          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula • Curso 803</h3>
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios • Curso 803</h3>
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📊 Hojas de cálculo Excel (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>💻 PowerPoint (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🚀 Proyecto Final (40%)</span><span class="font-bold text-amber-400">40%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📚 Plan Lector (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>⭐ Tecno Coins (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📝 Autoeval. & Coeval. (10%)</span><span class="font-bold text-amber-400">10%</span></div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Funciones y gráficos, factura, nómina</span></div>
+              <span class="font-bold text-emerald-400">15%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones</span></div>
+              <span class="font-bold text-emerald-400">15%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">40%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento "Círculo Vicioso"</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos, asistencia y participación</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
           </div>
         </div>
 
+        <!-- CONTENEDOR DE PACTO: CURSO 804 -->
         <div id="pacto-curso-804" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
-          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-indigo-400">📋 Pacto de Aula • Curso 804</h3>
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-indigo-400">📋 Pacto de Aula y Criterios • Curso 804</h3>
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📊 Hojas de cálculo Excel (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>💻 PowerPoint, Genially y Canva (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🌐 Google Sites (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🚀 Proyecto Final (30%)</span><span class="font-bold text-amber-400">30%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📚 Plan Lector (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>⭐ Tecno Coins (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📝 Autoeval. & Coeval. (10%)</span><span class="font-bold text-amber-400">10%</span></div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Aplicaciones (factura, nómina)</span></div>
+              <span class="font-bold text-emerald-400">15% </span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones-Taller herramientas WEB</span></div>
+              <span class="font-bold text-emerald-400">15% </span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Portafolio Digital en Google Sites</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento "Círculo Vicioso"</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos, asistencia y participación</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
           </div>
         </div>
 
+        <!-- CONTENEDOR DE PACTO: CURSO 805 -->
         <div id="pacto-curso-805" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
-          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula • Curso 805</h3>
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios • Curso 805</h3>
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📐 Dibujo técnico (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📊 Excel (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>💻 PowerPoint/Canva (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🚀 Olimpiadas STEM Reto 4 (20%)</span><span class="font-bold text-emerald-400">20%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🔋 Circuitos (20% - Sin Sites)</span><span class="font-bold text-emerald-400">20%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📚 Plan Lector (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>⭐ Tecno Coins (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📝 Autoeval. & Coeval. (10%)</span><span class="font-bold text-amber-400">10%</span></div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📐 Dibujo técnico</span><span class="text-[10px] text-slate-400">Modelos3D y Vistas</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Funciones y gráficos, factura y nómina</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones-Taller herramientas WEB</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Portafolio Digital en Google Sites</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Olimpiadas STEM 2026 RETO 4</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-emerald-400">20% </span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🔋 Circuitos </span><span class="text-[10px] text-slate-400">Elaboración física de circuitos en clase</span></div>
+              <span class="font-bold text-emerald-400">10% </span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento 2 y Cuento 3</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos y asistencia</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
           </div>
         </div>
 
+        <!-- CONTENEDOR DE PACTO: CURSO 806 -->
         <div id="pacto-curso-806" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
-          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-emerald-400">📋 Pacto de Aula • Curso 806</h3>
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-emerald-400">📋 Pacto de Aula y Criterios • Curso 806</h3>
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📊 Excel (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>💻 PowerPoint/Canva (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🌐 Google Sites (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🚀 Proyecto Final (30%)</span><span class="font-bold text-amber-400">30%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📚 Plan Lector (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>⭐ Tecno Coins (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📝 Autoeval. & Coeval. (10%)</span><span class="font-bold text-amber-400">10%</span></div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Aplicaciones (factura, nómina)</span></div>
+              <span class="font-bold text-emerald-400">15%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones-Taller herramientas WEB</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Portafolio Digital en Google Sites</span></div>
+              <span class="font-bold text-emerald-400">15% </span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento 2 y Cuento 3</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos y asistencia</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
           </div>
         </div>
 
+        <!-- CONTENEDOR DE PACTO: CURSO 807 -->
         <div id="pacto-curso-807" class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-4 hidden">
-          <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula • Curso 807</h3>
+          <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3">
+            <h3 class="font-gamer text-base font-bold text-cyan-400">📋 Pacto de Aula y Criterios • Curso 807</h3>
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300">Tercer Periodo 2026</span>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📊 Excel (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>💻 PowerPoint/Canva (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🌐 Google Sites (15%)</span><span class="font-bold text-emerald-400">15%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>🚀 Proyecto Final (30%)</span><span class="font-bold text-amber-400">30%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📚 Plan Lector (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>⭐ Tecno Coins (10%)</span><span class="font-bold text-amber-400">10%</span></div>
-            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center"><span>📝 Autoeval. & Coeval. (10%)</span><span class="font-bold text-amber-400">10%</span></div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📊 Hojas de cálculo Excel</span><span class="text-[10px] text-slate-400">Funciones y gráficos, factura y nómina</span></div>
+              <span class="font-bold text-emerald-400">15%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">💻 Microsoft PowerPoint, Genially y Canva</span><span class="text-[10px] text-slate-400">Taller vínculos y animaciones-Taller herramientas WEB</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🌐 Páginas web – Google Sites</span><span class="text-[10px] text-slate-400">Portafolio Digital en Google Sites</span></div>
+              <span class="font-bold text-emerald-400">15%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">🚀 Proyecto Final</span><span class="text-[10px] text-slate-400">Propuesta, desarrollo, informe y sustentación</span></div>
+              <span class="font-bold text-amber-400">30%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📚 Actividad Plan Lector</span><span class="text-[10px] text-slate-400">Cuento "Círculo Vicioso"</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">⭐ Puntos en Clase (Techno Coins)</span><span class="text-[10px] text-slate-400">Retos y asistencia</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800/80 flex justify-between items-center">
+              <div><span class="font-semibold text-white block">📝 Autoevaluación & Coevaluación</span><span class="text-[10px] text-slate-400">5% cada una</span></div>
+              <span class="font-bold text-amber-400">10%</span>
+            </div>
           </div>
         </div>
 
@@ -316,42 +457,85 @@
     <section id="vista-simulador" class="hidden">
       <div class="card-glass rounded-2xl p-6">
         <h2 class="font-gamer text-xl font-bold text-amber-400 mb-2">⚡ Simulador Interactivo en Clase</h2>
-        <p class="text-sm text-slate-300 mb-6">Selecciona un estudiante para simular asistencia, retos o faltas en vivo.</p>
+        <p class="text-sm text-slate-300 mb-6">
+          Selecciona un estudiante para simular en vivo asistencia, retos lógicos con tarjeta de clips o faltas de convivencia.
+        </p>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="space-y-4">
             <label class="block text-xs font-bold uppercase text-slate-400">1. Elige el Estudiante:</label>
             <select id="selectSimulador" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white"></select>
-            <label class="block text-xs font-bold uppercase text-slate-400 pt-2">2. Acciones Rápidas:</label>
+
+            <label class="block text-xs font-bold uppercase text-slate-400 pt-2">2. Asistencia o Desafío en Clase:</label>
             <div class="grid grid-cols-3 gap-2">
-              <button onclick="simularAccion('asistencia', '0')" class="py-2.5 px-3 rounded-xl bg-emerald-600 text-xs font-bold">Asistió (0)</button>
-              <button onclick="simularAccion('asistencia', '2')" class="py-2.5 px-3 rounded-xl bg-rose-600 text-xs font-bold">Falta (2)</button>
-              <button onclick="simularAccion('asistencia', 'U')" class="py-2.5 px-3 rounded-xl bg-amber-600 text-xs font-bold">Uniforme (U)</button>
-              <button onclick="simularAccion('asistencia', 'R')" class="py-2.5 px-3 rounded-xl bg-orange-600 text-xs font-bold">Retardo (R)</button>
-              <button onclick="simularAccion('asistencia', 'E')" class="py-2.5 px-3 rounded-xl bg-purple-600 text-xs font-bold">Evasión (E)</button>
-              <button onclick="simularAccion('reto', 5)" class="py-2.5 px-3 rounded-xl bg-indigo-600 text-xs font-bold">Reto (+5)</button>
+              <button onclick="simularAccion('asistencia', '0')" class="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold">Asistió (0)</button>
+              <button onclick="simularAccion('asistencia', '2')" class="py-2.5 px-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-bold">Falta s/ex (2)</button>
+              <button onclick="simularAccion('asistencia', 'U')" class="py-2.5 px-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-xs font-bold">Uniforme (U)</button>
+              <button onclick="simularAccion('asistencia', 'R')" class="py-2.5 px-3 rounded-xl bg-orange-600 hover:bg-orange-500 text-xs font-bold">Retardo (R)</button>
+              <button onclick="simularAccion('asistencia', 'E')" class="py-2.5 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-xs font-bold">Evasión (E)</button>
+              <button onclick="simularAccion('reto', 5)" class="py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-xs font-bold">Reto Correcto (+5)</button>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <label class="block text-xs font-bold uppercase text-slate-400">3. Convivencia y Participación:</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button onclick="simularAccion('frente', 5)" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-emerald-900/60 border border-slate-700 text-left text-xs font-bold">
+                🎤 Pasó al frente (+5 pts & Insignia)
+              </button>
+              <button onclick="simularAccion('hoja', -5)" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-900/60 border border-slate-700 text-left text-xs font-bold">
+                📝 Olvidó su hoja (-5 pts & Bloquea Insignia)
+              </button>
+              <button onclick="simularAccion('convivencia', 'fueraPuesto')" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-900/60 border border-slate-700 text-left text-xs font-bold">
+                🪑 Fuera del puesto (-5 pts)
+              </button>
+              <button onclick="simularAccion('convivencia', 'celular')" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-rose-900/60 border border-slate-700 text-left text-xs font-bold">
+                📵 Celular sin permiso (-5 pts)
+              </button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PESTAÑA 5: CONSULTA DE NOTAS PRIVADAS -->
+    <!-- PESTAÑA 5: CONSULTA DE NOTAS PRIVADAS POR CLAVE -->
     <section id="vista-notas" class="hidden space-y-6">
       <div class="card-glass rounded-2xl p-6 max-w-xl mx-auto text-center space-y-4">
-        <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-3xl mx-auto shadow-inner">🔐</div>
+        <div class="w-14 h-14 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center text-3xl mx-auto shadow-inner">
+          🔐
+        </div>
         <h2 class="font-gamer text-xl font-bold text-white">Portal Privado de Calificaciones</h2>
+        <p class="text-xs text-slate-300">
+          Ingresa tu nombre completo y tu clave secreta personal para consultar tu boletín definitivo ponderado según el pacto de aula de tu curso.
+        </p>
+
         <div class="bg-slate-900/80 border border-indigo-500/30 p-4 rounded-xl text-slate-300 text-xs text-left mb-4">
           <h4 class="text-indigo-400 font-bold mb-1">💡 ¿Cómo ingresar a tu portal?</h4>
-          <p class="mb-2"><strong>Usuario:</strong> Tu nombre completo institucional (Apellidos y Nombres).</p>
-          <p class="mb-1"><strong>Contraseña:</strong> Primeras 3 letras de tu primer apellido + primeras 3 letras de tu segundo apellido + curso + número de lista (todo en minúsculas sin espacios).</p>
-          <p class="text-[11px] text-slate-400 italic mt-2">Ejemplo (Juan Carlos Pérez Gómez, 802, #5): <code class="text-emerald-400">pergom80205</code></p>
+          <p class="mb-2"><strong>Usuario:</strong> Escribe tu nombre completo en orden institucional (Apellidos y Nombres).</p>
+          <p class="mb-1"><strong>Contraseña:</strong> Primeras 3 letras de tu primer apellido + primeras 3 letras de tu segundo apellido + tu curso + tu número de lista (todo en minúsculas sin espacios).</p>
+          <p class="text-[11px] text-slate-400 italic mt-2">Ejemplo: Si te llamas <em>Juan Carlos Pérez Gómez</em>, eres del curso <em>802</em> y tu número de lista es el <em>5</em>, tu contraseña es: <code class="text-emerald-400">pergom80205</code></p>
         </div>
+        
         <div class="space-y-3 pt-2">
-          <input type="text" id="inputBusquedaAlumno" placeholder="Tu Nombre Completo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center" />
-          <input type="password" id="inputClaveAlumno" placeholder="Tu Clave Secreta..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white text-center" />
-          <button onclick="verificarYMostrarNotas()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm">🔓 Ver Mis Notas del Periodo</button>
+          <input
+            type="text"
+            id="inputBusquedaAlumno"
+            placeholder="Tu Nombre Completo..."
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 text-center"
+          />
+          <input
+            type="password"
+            id="inputClaveAlumno"
+            placeholder="Tu Clave Secreta..."
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-emerald-400 text-center"
+          />
+          <button onclick="verificarYMostrarNotas()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm transition shadow-lg">
+            🔓 Ver Mis Notas del Periodo
+          </button>
         </div>
       </div>
+
+      <!-- Contenedor donde aparecerá el boletín privado del estudiante -->
       <div id="resultadoBoletinPrivado" class="max-w-2xl mx-auto"></div>
     </section>
 
@@ -362,6 +546,7 @@
     <div class="max-w-4xl w-full bg-slate-900 border border-slate-700 p-6 rounded-2xl relative shadow-2xl">
       <button onclick="cerrarPanelDocente()" class="absolute top-4 right-4 text-rose-400 font-bold text-lg hover:text-rose-300">✕ Cerrar</button>
       <h3 class="text-xl font-bold text-emerald-400 mb-4">📋 Consolidado de Notas por Curso (Acceso Exclusivo Docente)</h3>
+      
       <div class="flex gap-4 mb-4">
         <select id="selectCursoDocente" onchange="renderizarConsolidadoDocente()" class="bg-slate-800 text-white p-2 rounded border border-slate-600 text-sm">
           <option value="802">Curso 802</option>
@@ -372,6 +557,7 @@
           <option value="807">Curso 807</option>
         </select>
       </div>
+
       <div class="overflow-x-auto max-h-[60vh]">
         <table class="w-full text-left text-xs text-slate-300">
           <thead>
@@ -382,7 +568,9 @@
               <th class="p-2.5">Definitiva Periodo</th>
             </tr>
           </thead>
-          <tbody id="tablaConsolidadoBody"></tbody>
+          <tbody id="tablaConsolidadoBody">
+            <!-- Se llena dinámicamente -->
+          </tbody>
         </table>
       </div>
     </div>
@@ -393,138 +581,550 @@
     <div class="card-glass rounded-2xl max-w-2xl w-full p-6 border border-slate-700 max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-start gap-4 border-b border-slate-800 pb-4">
         <div>
-          <span id="modalCurso" class="px-2.5 py-1 rounded text-xs font-bold bg-indigo-500/20 text-indigo-300">Curso</span>
-          <h3 id="modalNombre" class="font-gamer text-xl font-bold mt-1">Nombre</h3>
+          <span id="modalCurso" class="px-2.5 py-1 rounded-md text-xs font-bold bg-indigo-500/20 text-indigo-300">Curso 802</span>
+          <h3 id="modalNombre" class="font-gamer text-xl font-bold mt-1">Nombre del Estudiante</h3>
         </div>
-        <button onclick="cerrarModal()" class="text-slate-400 text-xl font-bold">✕</button>
+        <button onclick="cerrarModal()" class="text-slate-400 hover:text-white text-xl font-bold">✕</button>
       </div>
+
       <div id="modalContenido" class="mt-4 space-y-5"></div>
     </div>
   </div>
 
   <script>
+    // =========================================================================
+    // 1. URL DE GOOGLE APPS SCRIPT
+    // =========================================================================
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5zu7dj9ibH9fWVZRLcUDpLfezt8zERWWbRMWAxPFt-3keXzWiQBc0TEuXChnjqUn8/exec";
-    const CLAVE_DOCENTE = "profe2026"; // Cambia tu contraseña de docente aquí si lo deseas
+    const CLAVE_DOCENTE = "profe2026"; // Contraseña para abrir el panel docente
+
+    // =========================================================================
+    // 2. DEFINICIÓN DE LAS 11 INSIGNIAS OFICIALES
+    // =========================================================================
+    const DEFINICION_INSIGNIAS = [
+      { id: "imbatible", icono: "🏆", nombre: "Imbatible", requisito: "0 inasistencias sin excusa", evaluar: (est, stats) => stats.faltasSinExcusa === 0 },
+      { id: "uniforme", icono: "🛡️", nombre: "Armadura Impecable", requisito: "Cumplió con el uniforme completo en todas las clases", evaluar: (est, stats) => stats.uniforme === 0 },
+      { id: "puntualidad", icono: "⚡", nombre: "Reloj Suizo", requisito: "Llegó puntual a todas las clases", evaluar: (est, stats) => stats.retardos === 0 && stats.excusaTarde === 0 },
+      { id: "portador", icono: "📝", nombre: "Portador Fiel", requisito: "Siempre trajo su hoja para responder los desafíos de clase", evaluar: (est) => (est.hojasOlidadas || 0) === 0 },
+      { id: "orador", icono: "🎤", nombre: "Orador del Reto", requisito: "Pasó voluntariamente al frente a exponer y explicar correctamente el desafío", evaluar: (est) => (est.vecesAlFrente || 0) > 0 },
+      { id: "puesto", icono: "🪑", nombre: "Guardián del Puesto", requisito: "Nunca perdió puntos por estar fuera del puesto", evaluar: (est) => (est.faltasConvivencia?.fueraPuesto || 0) === 0 },
+      { id: "comida", icono: "🍽️", nombre: "Zona Limpia", requisito: "Nunca perdió puntos por comer en clase", evaluar: (est) => (est.faltasConvivencia?.comerClase || 0) === 0 },
+      { id: "audifonos", icono: "🎧", nombre: "Oído Atento", requisito: "Nunca perdió puntos por usar audífonos en clase", evaluar: (est) => (est.faltasConvivencia?.audifonos || 0) === 0 },
+      { id: "celular", icono: "📵", nombre: "Cero Distracción", requisito: "Nunca perdió puntos por usar el celular sin permiso", evaluar: (est) => (est.faltasConvivencia?.celular || 0) === 0 },
+      { id: "groserias", icono: "💬", nombre: "Cultura de Paz", requisito: "Nunca perdió puntos por decir groserías", evaluar: (est) => (est.faltasConvivencia?.groserias || 0) === 0 }
+    ];
+
     let estudiantes = [];
     let cursoActual = "TODOS";
 
-    const DEFINICION_INSIGNIAS = [
-      { id: "imbatible", icono: "🏆", nombre: "Imbatible", requisito: "0 inasistencias sin excusa", evaluar: (est, stats) => stats.faltasSinExcusa === 0 },
-      { id: "uniforme", icono: "🛡️", nombre: "Armadura Impecable", requisito: "Uniforme completo", evaluar: (est, stats) => stats.uniforme === 0 },
-      { id: "puntualidad", icono: "⚡", nombre: "Reloj Suizo", requisito: "Puntualidad impecable", evaluar: (est, stats) => stats.retardos === 0 && stats.excusaTarde === 0 },
-      { id: "portador", icono: "📝", nombre: "Portador Fiel", requisito: "Hoja de desafío", evaluar: (est) => (est.hojasOlidadas || 0) === 0 },
-      { id: "orador", icono: "🎤", nombre: "Orador del Reto", requisito: "Pasó al frente", evaluar: (est) => (est.vecesAlFrente || 0) > 0 },
-      { id: "puesto", icono: "🪑", nombre: "Guardián", requisito: "En su puesto", evaluar: (est) => (est.faltasConvivencia?.fueraPuesto || 0) === 0 },
-      { id: "comida", icono: "🍽️", nombre: "Zona Limpia", requisito: "Sin comer en clase", evaluar: (est) => (est.faltasConvivencia?.comerClase || 0) === 0 },
-      { id: "audifonos", icono: "🎧", nombre: "Oído Atento", requisito: "Sin audífonos", evaluar: (est) => (est.faltasConvivencia?.audifonos || 0) === 0 },
-      { id: "celular", icono: "📵", nombre: "Cero Distracción", requisito: "Sin celular", evaluar: (est) => (est.faltasConvivencia?.celular || 0) === 0 },
-      { id: "groserias", icono: "💬", nombre: "Cultura de Paz", requisito: "Buena convivencia", evaluar: (est) => (est.faltasConvivencia?.groserias || 0) === 0 }
-    ];
-
+    // =========================================================================
+    // 4. CÁLCULO DE CORAZONES Y TECNO COINS
+    // =========================================================================
     function calcularEstadisticas(est) {
-      let asistencias = 0, faltasSinExcusa = 0, uniforme = 0, retardos = 0, excusaTarde = 0, puntos = 0;
+      let asistencias = 0;      
+      let faltasSinExcusa = 0;  
+      let uniforme = 0;          
+      let retardos = 0;          
+      let excusaTarde = 0;      
+
+      let puntosAsistenciaCalculados = 0;
+
       (est.fechas || []).forEach(reg => {
         const txt = String(reg.codigo || "").toUpperCase().trim();
-        if (txt.includes("0") || txt.includes("O")) { asistencias++; puntos += 1; if(!txt.includes("U")) puntos += 5; }
-        if (txt.includes("2")) { faltasSinExcusa++; puntos -= 1; }
-        if (txt.includes("U")) { uniforme++; puntos -= 5; }
-        if (txt.includes("R")) { retardos++; puntos -= 5; }
-        if (txt.includes("E")) { excusaTarde++; puntos -= 20; }
+        
+        const esAsistenciaPura = txt === "0" || txt === "O" || txt === "⃠";
+        const tieneAsistencia = esAsistenciaPura || txt.includes("0") || txt.includes("O") || txt.includes("⃠");
+        const tieneFalta = txt.includes("2");
+        const tieneUniformeFalla = txt.includes("U");
+        const tieneRetardo = txt.includes("R");
+        const tieneEvasion = txt.includes("E");
+
+        if (tieneAsistencia && !tieneFalta) {
+          asistencias++;
+          puntosAsistenciaCalculados += 1; 
+          if (!tieneUniformeFalla) {
+            puntosAsistenciaCalculados += 5; 
+          }
+        }
+        if (tieneFalta) {
+          faltasSinExcusa++;
+          puntosAsistenciaCalculados -= 1;
+        }
+        if (tieneUniformeFalla) {
+          uniforme++;
+          puntosAsistenciaCalculados -= 5;
+        }
+        if (tieneRetardo) {
+          retardos++;
+          puntosAsistenciaCalculados -= 5;
+        }
+        if (tieneEvasion) {
+          excusaTarde++;
+          puntosAsistenciaCalculados -= 20;
+        }
       });
-      const corazonesTotales = Math.max(0, 3.0 + (asistencias * 0.25) - (faltasSinExcusa * 1.0));
-      est.coins = Number(est.coinsManuales || 0) + puntos;
-      return { asistencias, faltasSinExcusa, uniforme, retardos, excusaTarde, corazonesTotales, maxCorazonesVisuales: Math.max(5, Math.ceil(corazonesTotales)) };
+
+      const corazonesBase = 3.0;
+      const corazonesGanados = asistencias * 0.25;
+      const corazonesPerdidos = faltasSinExcusa * 1.0;
+      const corazonesTotales = Math.max(0, corazonesBase + corazonesGanados - corazonesPerdidos);
+      const maxCorazonesVisuales = Math.max(5, Math.ceil(corazonesTotales));
+
+      const baseManuales = Number(est.coinsManuales !== undefined ? est.coinsManuales : 0);
+      const totalCoinsFinal = baseManuales + puntosAsistenciaCalculados;
+      est.coins = totalCoinsFinal;
+
+      return {
+        asistencias,
+        faltasSinExcusa,
+        uniforme,
+        retardos,
+        excusaTarde,
+        corazonesTotales,
+        maxCorazonesVisuales
+      };
     }
 
+    // =========================================================================
+    // 5. RENDERIZADO DE TARJETAS Y LEADERBOARD
+    // =========================================================================
     function renderizarEstudiantes() {
       const contenedor = document.getElementById("gridEstudiantes");
       if (!contenedor) return;
+
       if (estudiantes.length === 0) {
-        contenedor.innerHTML = `<div class="col-span-full py-16 text-center card-glass rounded-2xl"><div class="inline-block animate-spin text-4xl mb-3">⏳</div><p class="text-base font-bold text-amber-400">Sincronizando datos desde Google Drive...</p></div>`;
+        contenedor.innerHTML = `
+          <div class="col-span-full py-16 text-center card-glass rounded-2xl">
+            <div class="inline-block animate-spin text-4xl mb-3">⏳</div>
+            <p class="text-base font-bold text-amber-400">Sincronizando datos desde Google Drive...</p>
+          </div>
+        `;
         return;
       }
-      const textoBusqueda = document.getElementById("buscadorEstudiante")?.value.toLowerCase().trim() || "";
-      const filtrados = estudiantes.filter(e => cursoActual === "TODOS" || e.curso === cursoActual).filter(e => e.nombre.toLowerCase().includes(textoBusqueda)).sort((a, b) => b.coins - a.coins);
-      
+
+      const buscadorElem = document.getElementById("buscadorEstudiante");
+      const textoBusqueda = buscadorElem ? buscadorElem.value.toLowerCase().trim() : "";
+
+      const filtrados = estudiantes
+        .filter(e => cursoActual === "TODOS" || e.curso === cursoActual)
+        .filter(e => e.nombre.toLowerCase().includes(textoBusqueda))
+        .sort((a, b) => b.coins - a.coins);
+
+      if (filtrados.length === 0) {
+        contenedor.innerHTML = `
+          <div class="col-span-full py-12 text-center card-glass rounded-2xl">
+            <p class="text-sm text-slate-400">No se encontraron estudiantes en este curso.</p>
+          </div>
+        `;
+        return;
+      }
+
       contenedor.innerHTML = filtrados.map((est, index) => {
         const stats = calcularEstadisticas(est);
+        const medalla = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : `#${index + 1}`;
+
+        const insigniasHTML = DEFINICION_INSIGNIAS.map(ins => {
+          const desbloqueada = ins.evaluar(est, stats);
+          return `
+            <div title="${ins.nombre}: ${ins.requisito}"
+                 class="w-8 h-8 rounded-lg flex items-center justify-center text-base transition ${desbloqueada ? 'badge-active' : 'badge-locked'}">
+              ${ins.icono}
+            </div>
+          `;
+        }).join("");
+
         const notaMostrada = (est.nota !== undefined && est.nota !== null) ? Number(est.nota).toFixed(1) : "0.0";
-        const insigniasHTML = DEFINICION_INSIGNIAS.map(ins => `<div title="${ins.nombre}" class="w-8 h-8 rounded-lg flex items-center justify-center text-base ${ins.evaluar(est, stats) ? 'badge-active' : 'badge-locked'}">${ins.icono}</div>`).join("");
 
         return `
           <article onclick="abrirModal(${est.id})" class="card-glass rounded-2xl p-5 hover:border-emerald-500/50 transition cursor-pointer flex flex-col justify-between">
             <div>
-              <div class="flex justify-between items-start">
-                <span class="font-gamer text-sm font-extrabold px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400">#${index + 1}</span>
-                <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300">Curso ${est.curso}</span>
+              <div class="flex justify-between items-start gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="font-gamer text-sm font-extrabold px-2.5 py-1 rounded-lg bg-slate-800 text-amber-400">${medalla}</span>
+                  <span class="text-xs font-bold px-2.5 py-1 rounded-lg bg-indigo-500/20 text-indigo-300">Curso ${est.curso}</span>
+                </div>
+                <div class="text-right">
+                  <span class="font-gamer text-lg font-extrabold text-amber-400">🪙 ${est.coins}</span>
+                  <p class="text-[10px] text-slate-400 uppercase">Tecno Coins</p>
+                </div>
               </div>
+
               <h3 class="font-bold text-base text-white mt-3">${est.nombre}</h3>
-              <div class="mt-3 p-3 rounded-xl bg-slate-900 border border-slate-800 flex justify-between">
-                <span class="text-xs font-bold text-rose-400">Vidas: <strong>${stats.corazonesTotales.toFixed(2)} ❤️</strong></span>
-                <span class="text-xs font-bold text-amber-400">🪙 ${est.coins}</span>
+
+              <div class="mt-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-xs font-bold text-rose-400">Nivel de Vida</span>
+                  <span class="font-gamer text-xs font-bold text-white">${stats.corazonesTotales.toFixed(2)} ❤️</span>
+                </div>
+                ${dibujarCorazonesSVG(stats.corazonesTotales, stats.maxCorazonesVisuales, est.id)}
               </div>
-              <div class="mt-3 flex flex-wrap gap-1.5">${insigniasHTML}</div>
+
+              <div class="mt-4">
+                <div class="flex justify-between items-center mb-1.5">
+                  <span class="text-[11px] uppercase tracking-wider font-bold text-slate-400">Insignias del Periodo</span>
+                </div>
+                <div class="flex flex-wrap gap-1.5">${insigniasHTML}</div>
+              </div>
             </div>
-            <div class="mt-4 pt-3 border-t border-slate-800 flex justify-between items-center text-xs text-slate-400">
+
+            <div class="mt-4 pt-3 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-400">
               <span>Nota Periodo: <strong class="text-emerald-400">${notaMostrada}</strong></span>
-              <span class="text-cyan-400 font-semibold">Ver detalle →</span>
+              <span class="text-cyan-400 font-semibold">Ver historial completo →</span>
             </div>
           </article>
         `;
       }).join("");
     }
 
+    function dibujarCorazonesSVG(valorTotal, maxVisual, idUnico) {
+      let html = `<div class="flex flex-wrap items-center gap-1">`;
+      for (let i = 0; i < maxVisual; i++) {
+        const fraccion = Math.max(0, Math.min(1, valorTotal - i));
+        const porcentaje = Math.round(fraccion * 100);
+        const gradId = `heart-grad-${idUnico}-${i}`;
+
+        html += `
+          <svg class="w-5 h-5 drop-shadow" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="${porcentaje}%" stop-color="#f43f5e" />
+                <stop offset="${porcentaje}%" stop-color="#334155" />
+              </linearGradient>
+            </defs>
+            <path fill="url(#${gradId})" stroke="#fb7185" stroke-width="1.2"
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        `;
+      }
+      html += `</div>`;
+      return html;
+    }
+
     function filtrarCurso(curso) {
       cursoActual = curso;
       document.querySelectorAll(".btn-curso").forEach(btn => {
-        btn.className = (btn.dataset.curso === curso) ? "btn-curso px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white" : "btn-curso px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700";
+        btn.className = (btn.dataset.curso === curso)
+          ? "btn-curso px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white"
+          : "btn-curso px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700";
       });
       renderizarEstudiantes();
     }
 
+    // =========================================================================
+    // 6. MODAL DETALLADO ESTILO FLIPPITY
+    // =========================================================================
     function abrirModal(id) {
       const est = estudiantes.find(e => e.id === id);
       if (!est) return;
       const stats = calcularEstadisticas(est);
       const notaFinalEstudiante = (est.nota !== undefined && est.nota !== null) ? Number(est.nota).toFixed(1) : "0.0";
 
-      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota: ${notaFinalEstudiante}`;
+      document.getElementById("modalCurso").textContent = `Curso ${est.curso} • Nota Periodo: ${notaFinalEstudiante}`;
       document.getElementById("modalNombre").textContent = est.nombre;
-      
-      let detallePuntos = [...(est.desglosesTabla || []), ...(est.desglosesAsistencia || [])];
-      let desgloseHTML = detallePuntos.length === 0 ? `<p class="text-xs text-slate-400">Sin registros.</p>` : detallePuntos.map(i => `<div class="p-2 rounded bg-slate-900 flex justify-between text-xs"><span>${i.motivo}</span><span class="${i.tipo === 'positivo' ? 'text-emerald-400' : 'text-rose-400'}">${i.puntos}</span></div>`).join("");
+
+      const historialFechasHTML = (est.fechas || []).map(f => {
+        const colores = {
+          "0": "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
+          "1": "bg-sky-500/20 text-sky-300 border-sky-500/40",
+          "2": "bg-rose-500/20 text-rose-300 border-rose-500/40",
+          "U": "bg-amber-500/20 text-amber-300 border-amber-500/40",
+          "R": "bg-orange-500/20 text-orange-300 border-orange-500/40",
+          "E": "bg-purple-500/20 text-purple-300 border-purple-500/40"
+        };
+        return `
+          <div class="px-2.5 py-1.5 rounded-lg border text-center ${colores[f.codigo[0]] || 'bg-slate-800'}">
+            <div class="text-[10px] opacity-75">${f.fecha}</div>
+            <div class="font-gamer text-xs font-bold">${f.codigo}</div>
+          </div>
+        `;
+      }).join("");
+
+      let detallePuntosFlippity = [...(est.desglosesTabla || []), ...(est.desglosesAsistencia || [])];
+      const desgloseFlippityHTML = detallePuntosFlippity.length === 0
+        ? `<p class="text-xs text-slate-400">Aún no hay registros de puntajes detallados.</p>`
+        : `<div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            ${detallePuntosFlippity.map(item => `
+              <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex justify-between items-center text-xs">
+                <div>
+                  <span class="font-semibold text-white">${item.motivo}</span>
+                  <span class="text-[10px] text-slate-400 ml-2">📅 ${item.fecha}</span>
+                </div>
+                <span class="font-gamer font-bold px-2 py-0.5 rounded ${item.tipo === 'positivo' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${item.puntos} pts</span>
+              </div>
+            `).join("")}
+           </div>`;
+
+      const detalleInsignias = DEFINICION_INSIGNIAS.map(ins => {
+        const activa = ins.evaluar(est, stats);
+        return `
+          <div class="p-3 rounded-xl border ${activa ? 'bg-emerald-950/30 border-emerald-600/50' : 'bg-slate-900/60 border-slate-800 opacity-60'} flex items-start gap-3">
+            <div class="text-2xl">${ins.icono}</div>
+            <div>
+              <div class="text-xs font-bold ${activa ? 'text-emerald-300' : 'text-slate-400'}">
+                ${ins.nombre} ${activa ? '✓ DESBLOQUEADA' : '🔒 BLOQUEADA'}
+              </div>
+              <p class="text-[11px] text-slate-400 mt-0.5">${ins.requisito}</p>
+            </div>
+          </div>
+        `;
+      }).join("");
 
       document.getElementById("modalContenido").innerHTML = `
-        <div class="p-3 rounded bg-slate-900 flex justify-between"><span>Coins: 🪙 ${est.coins}</span><span>Vidas: ❤️ ${stats.corazonesTotales.toFixed(2)}</span></div>
-        <div class="space-y-1"><p class="text-xs font-bold text-slate-400">Desglose:</p>${desgloseHTML}</div>
+        <div class="flex justify-between items-center p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <div>
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Total Acumulado</p>
+            <p class="font-gamer text-2xl font-extrabold text-amber-400 mt-0.5">🪙 ${est.coins} Tecno Coins</p>
+          </div>
+          <div class="text-right">
+            <p class="text-[10px] uppercase tracking-wider text-slate-400 font-bold">Nivel de Vida</p>
+            <p class="font-gamer text-sm font-bold text-rose-400 mt-0.5">${stats.corazonesTotales.toFixed(2)} ❤️</p>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-xs font-bold uppercase text-slate-400">📋 Desglose de Puntos por Motivo</p>
+          ${desgloseFlippityHTML}
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-900 border border-slate-800">
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Historial de Asistencia y Códigos</p>
+          <div class="flex flex-wrap gap-2">${historialFechasHTML.length ? historialFechasHTML : '<span class="text-xs text-slate-400">Sin registros recientes</span>'}</div>
+        </div>
+
+        <div>
+          <p class="text-xs font-bold uppercase text-slate-400 mb-2">Estado de las Insignias</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">${detalleInsignias}</div>
+        </div>
       `;
-      document.getElementById("modalEstudiante").classList.remove("hidden");
-      document.getElementById("modalEstudiante").classList.add("flex");
+
+      const modal = document.getElementById("modalEstudiante");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
     }
 
     function cerrarModal() {
-      document.getElementById("modalEstudiante").classList.add("hidden");
-      document.getElementById("modalEstudiante").classList.remove("flex");
+      const modal = document.getElementById("modalEstudiante");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // =========================================================================
+    // 7. SIMULADOR Y NAVEGACIÓN
+    // =========================================================================
+    function cargarSelectSimulador() {
+      const select = document.getElementById("selectSimulador");
+      if (!select) return;
+      select.innerHTML = estudiantes.map(e => `<option value="${e.id}">[${e.curso}] ${e.nombre}</option>`).join("");
+    }
+
+    function simularAccion(tipo, valor) {
+      const select = document.getElementById("selectSimulador");
+      if (!select) return;
+      const id = Number(select.value);
+      const est = estudiantes.find(e => e.id === id);
+      if (!est) return;
+
+      if (tipo === 'asistencia') est.fechas.push({ fecha: "Hoy", codigo: valor });
+      else if (tipo === 'reto') est.retosCompletados = (est.retosCompletados || 0) + 1;
+      else if (tipo === 'frente') est.vecesAlFrente = (est.vecesAlFrente || 0) + 1;
+      else if (tipo === 'hoja') est.hojasOlidadas = (est.hojasOlidadas || 0) + 1;
+      else if (tipo === 'convivencia') est.faltasConvivencia[valor] = (est.faltasConvivencia[valor] || 0) + 1;
+
+      renderizarEstudiantes();
+      abrirModal(id);
     }
 
     function cambiarPestana(nombre) {
       ["leaderboard", "misiones", "pactos", "simulador", "notas"].forEach(p => {
-        document.getElementById(`vista-${p}`)?.classList.toggle("hidden", p !== nombre);
+        const vista = document.getElementById(`vista-${p}`);
+        const btn = document.getElementById(`tab-${p}`);
+        if (vista) vista.classList.toggle("hidden", p !== nombre);
+        if (btn) {
+          btn.className = (p === nombre)
+            ? "px-4 py-2 rounded-lg text-sm font-bold bg-emerald-500 text-slate-950 transition"
+            : "px-4 py-2 rounded-lg text-sm font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+        }
       });
     }
 
     function mostrarPactoCurso(cursoId) {
       ["802", "803", "804", "805", "806", "807"].forEach(id => {
-        document.getElementById(`pacto-curso-${id}`)?.classList.toggle("hidden", id !== cursoId);
+        const contenedor = document.getElementById(`pacto-curso-${id}`);
+        const boton = document.getElementById(`btn-pacto-${id}`);
+        if (contenedor) contenedor.classList.toggle("hidden", id !== cursoId);
+        if (boton) {
+          boton.className = (id === cursoId)
+            ? "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-500 text-white transition"
+            : "px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 hover:bg-slate-700 transition";
+        }
       });
     }
 
+    function renderizarCatalogoInsignias() {
+      const contenedor = document.getElementById("catalogoInsignias");
+      if (!contenedor) return;
+      contenedor.innerHTML = DEFINICION_INSIGNIAS.map(ins => `
+        <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 flex items-start gap-3">
+          <div class="w-10 h-10 rounded-xl badge-active flex items-center justify-center text-xl shrink-0">${ins.icono}</div>
+          <div>
+            <h4 class="font-bold text-sm text-white">${ins.nombre}</h4>
+            <p class="text-xs text-slate-400 mt-1">${ins.requisito}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function verificarYMostrarNotas() {
+      const nombreInput = document.getElementById("inputBusquedaAlumno").value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+      const claveInput = String(document.getElementById("inputClaveAlumno").value).trim();
+      const contenedorResultado = document.getElementById("resultadoBoletinPrivado");
+
+      if (!contenedorResultado) return;
+
+      if (!nombreInput || !claveInput) {
+        contenedorResultado.innerHTML = `
+          <div class="card-glass rounded-2xl p-4 text-center border-l-4 border-amber-500">
+            <p class="text-xs text-amber-300 font-bold">⚠️ Por favor escribe tu nombre y tu clave secreta.</p>
+          </div>`;
+        return;
+      }
+
+      if (!estudiantes || estudiantes.length === 0) {
+        contenedorResultado.innerHTML = `
+          <div class="card-glass rounded-2xl p-4 text-center border-l-4 border-amber-500">
+            <p class="text-xs text-amber-300 font-bold">⏳ Los datos aún están cargando desde Google Drive. Espera unos segundos.</p>
+          </div>`;
+        return;
+      }
+
+      const estudianteEncontrado = estudiantes.find(e => {
+        const nombreEst = String(e.nombre || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        const claveEst = String(e.clave || "").trim();
+        return nombreEst.includes(nombreInput) && claveEst === claveInput;
+      });
+
+      if (!estudianteEncontrado) {
+        contenedorResultado.innerHTML = `
+          <div class="card-glass rounded-2xl p-6 text-center border-l-4 border-rose-500 space-y-2">
+            <p class="text-sm font-bold text-rose-400">❌ Credenciales incorrectas</p>
+            <p class="text-xs text-slate-300">Verifica que tu nombre esté bien escrito y que tu clave secreta sea correcta.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let desgloseNotasHTML = `<p class="text-xs text-slate-400 text-center py-2">No hay calificaciones registradas todavía.</p>`;
+      
+      if (estudianteEncontrado.desgloseNotas && estudianteEncontrado.desgloseNotas.length > 0) {
+        desgloseNotasHTML = estudianteEncontrado.desgloseNotas.map(d => {
+          let contenidoSubnotas = `<span class="text-slate-500 text-xs">Sin calificar</span>`;
+          let valorPromedioTexto = "";
+
+          if (d.res !== null && d.res !== undefined) {
+            valorPromedioTexto = `<span class="font-gamer text-emerald-400 text-sm font-bold ml-2">Promedio: ${d.res.valor.toFixed(1)}</span>`;
+            
+            if (d.res.subnotas && d.res.subnotas.length > 0) {
+              contenidoSubnotas = d.res.subnotas.map(sub => {
+                let colorNota = sub.nota === 0 ? "text-rose-400 font-bold" : "text-white";
+                return `<div class="flex justify-between text-[11px] py-0.5 pl-2 border-l border-indigo-500/30 my-1">
+                          <span class="text-slate-300">${sub.titulo}:</span>
+                          <span class="${colorNota}">${sub.nota.toFixed(1)} ${sub.nota === 0 ? '(No entregó)' : ''}</span>
+                        </div>`;
+              }).join("");
+            }
+          }
+
+          return `
+            <div class="py-2 border-b border-slate-800/80">
+              <div class="flex justify-between items-center text-xs">
+                <div>
+                  <span class="text-white font-semibold block">${d.categoria}</span>
+                  <span class="text-[10px] text-indigo-300">Ponderación: ${d.porcentaje}</span>
+                </div>
+                ${valorPromedioTexto}
+              </div>
+              <div class="mt-1 bg-slate-900/50 p-1.5 rounded">
+                ${contenidoSubnotas}
+              </div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      const notaDefinitivaEstudiante = (estudianteEncontrado.nota !== undefined && estudianteEncontrado.nota !== null) ? Number(estudianteEncontrado.nota).toFixed(1) : "0.0";
+
+      contenedorResultado.innerHTML = `
+        <div class="card-glass rounded-2xl p-6 space-y-5 border border-indigo-500/40 shadow-2xl">
+          <div class="flex justify-between items-start border-b border-slate-800 pb-4">
+            <div>
+              <span class="px-2.5 py-1 rounded text-xs font-bold bg-indigo-500/20 text-indigo-300">Curso ${estudianteEncontrado.curso}</span>
+              <h3 class="font-gamer text-lg font-bold text-white mt-1">${estudianteEncontrado.nombre}</h3>
+            </div>
+            <div class="text-right">
+              <span class="font-gamer text-3xl font-extrabold text-emerald-400">${notaDefinitivaEstudiante}</span>
+              <p class="text-[10px] text-slate-400 uppercase font-bold">Nota Definitiva</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+            <p class="text-xs font-bold uppercase text-slate-400 mb-2">📊 Calificaciones Parciales del Periodo</p>
+            ${desgloseNotasHTML}
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+            <p class="text-xs font-bold uppercase text-slate-400">⚡ Estado de Juego</p>
+            <div class="flex justify-between text-xs py-1 border-b border-slate-800/60">
+              <span class="text-slate-300">Total Tecno Coins Acumuladas:</span>
+              <span class="font-bold text-amber-400">🪙 ${estudianteEncontrado.coins || 0} pts</span>
+            </div>
+            <div class="flex justify-between text-xs py-1">
+              <span class="text-slate-300">Nivel de Vida Actual:</span>
+              <span class="font-bold text-rose-400">❤️ ${calcularEstadisticas(estudianteEncontrado).corazonesTotales.toFixed(2)}</span>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-slate-400 text-center pt-1">
+            🔒 Esta información es confidencial y solo accesible mediante tu clave personal institucional.
+          </p>
+        </div>
+      `;
+    }
+    
+    async function sincronizarConDrive() {
+      if (!APPS_SCRIPT_URL) return;
+      try {
+        const res = await fetch(APPS_SCRIPT_URL);
+        const data = await res.json();
+        if (data.estudiantes && data.estudiantes.length > 0) {
+          estudiantes = data.estudiantes.map((e, idx) => ({ id: idx + 1, ...e }));
+          cargarSelectSimulador();
+          renderizarEstudiantes();
+        } else {
+          document.getElementById("gridEstudiantes").innerHTML = `
+            <div class="col-span-full py-12 text-center card-glass rounded-2xl">
+              <p class="text-sm text-rose-400">No se encontraron registros de estudiantes en el archivo maestro.</p>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.error("Error al conectar con Drive", err);
+        document.getElementById("gridEstudiantes").innerHTML = `
+          <div class="col-span-full py-12 text-center card-glass rounded-2xl">
+            <p class="text-sm text-rose-400">Error de conexión al cargar los datos desde Google Drive. Recarga la página.</p>
+          </div>
+        `;
+      }
+    }
+
+    // =========================================================================
+    // 8. FUNCIONES DE PANEL DOCENTE PROTEGIDO
+    // =========================================================================
     function pedirClaveDocente() {
-      const clave = prompt("🔒 Ingresa la contraseña de docente:");
-      if (clave === CLAVE_DOCENTE) {
+      const claveIngresada = prompt("🔒 Ingresa la contraseña de docente para acceder al consolidado:");
+      if (claveIngresada === CLAVE_DOCENTE) {
         document.getElementById("panelDocente").classList.remove("hidden");
         renderizarConsolidadoDocente();
-      } else if (clave !== null) {
+      } else if (claveIngresada !== null) {
         alert("❌ Contraseña incorrecta.");
       }
     }
@@ -534,58 +1134,38 @@
     }
 
     function renderizarConsolidadoDocente() {
-      const cursoSel = document.getElementById("selectCursoDocente").value;
+      const cursoSeleccionado = document.getElementById("selectCursoDocente").value;
       const tbody = document.getElementById("tablaConsolidadoBody");
       tbody.innerHTML = "";
-      const filtrados = estudiantes.filter(e => e.curso === cursoSel).sort((a, b) => a.nombre.localeCompare(b.nombre));
-      
-      filtrados.forEach(est => {
+
+      const estudiantesCurso = estudiantes
+        .filter(e => e.curso === cursoSeleccionado)
+        .sort((a, b) => a.nombre.localeCompare(b.nombre));
+
+      if (estudiantesCurso.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-slate-400">Cargando datos o sin estudiantes en este curso...</td></tr>`;
+        return;
+      }
+
+      estudiantesCurso.forEach(est => {
         const notaCoinsObj = est.desgloseNotas?.find(d => d.categoria.includes("Coins"));
         const notaCoinsVal = notaCoinsObj && notaCoinsObj.res ? notaCoinsObj.res.valor.toFixed(1) : '0.0';
-        const notaDefVal = (est.nota !== undefined && est.nota !== null) ? Number(est.nota).toFixed(1) : '0.0';
+        const notaDefinitivaVal = (est.nota !== undefined && est.nota !== null) ? Number(est.nota).toFixed(1) : '0.0';
 
         const tr = document.createElement("tr");
         tr.className = "border-b border-slate-800 hover:bg-slate-800/50";
-        tr.innerHTML = `<td class="p-2.5 font-semibold text-white">${est.nombre}</td><td class="p-2.5">${est.coins} pts</td><td class="p-2.5">${notaCoinsVal}</td><td class="p-2.5 font-bold text-emerald-400">${notaDefVal}</td>`;
+        tr.innerHTML = `
+          <td class="p-2.5 font-semibold text-white">${est.nombre}</td>
+          <td class="p-2.5">${est.coins} pts</td>
+          <td class="p-2.5">${notaCoinsVal}</td>
+          <td class="p-2.5 font-bold text-emerald-400 text-sm">${notaDefinitivaVal}</td>
+        `;
         tbody.appendChild(tr);
       });
     }
 
-    function verificarYMostrarNotas() {
-      const nombreInput = document.getElementById("inputBusquedaAlumno").value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-      const claveInput = String(document.getElementById("inputClaveAlumno").value).trim();
-      const contenedorResultado = document.getElementById("resultadoBoletinPrivado");
-      if (!nombreInput || !claveInput) { contenedorResultado.innerHTML = `<p class="text-xs text-amber-300">Escribe tu nombre y clave.</p>`; return; }
-      
-      const estudianteEncontrado = estudiantes.find(e => String(e.nombre || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(nombreInput) && String(e.clave || "").trim() === claveInput);
-      if (!estudianteEncontrado) { contenedorResultado.innerHTML = `<p class="text-xs text-rose-400">Credenciales incorrectas.</p>`; return; }
-
-      let desgloseNotasHTML = estudianteEncontrado.desgloseNotas?.map(d => `<div class="py-1 text-xs flex justify-between"><span>${d.categoria} (${d.porcentaje})</span><span class="text-emerald-400 font-bold">${d.res ? d.res.valor.toFixed(1) : '0.0'}</span></div>`).join("") || "Sin notas";
-      const notaDef = (estudianteEncontrado.nota !== undefined && estudianteEncontrado.nota !== null) ? Number(estudianteEncontrado.nota).toFixed(1) : "0.0";
-
-      contenedorResultado.innerHTML = `
-        <div class="card-glass rounded-2xl p-6 space-y-4 border border-indigo-500/40">
-          <h3 class="font-gamer text-lg font-bold text-white">${estudianteEncontrado.nombre} (Curso ${estudianteEncontrado.curso})</h3>
-          <p class="text-2xl font-bold text-emerald-400">Nota Definitiva: ${notaDef}</p>
-          <div class="p-3 bg-slate-900 rounded">${desgloseNotasHTML}</div>
-        </div>
-      `;
-    }
-
-    async function sincronizarConDrive() {
-      try {
-        const res = await fetch(APPS_SCRIPT_URL);
-        const data = await res.json();
-        if (data.estudiantes) {
-          estudiantes = data.estudiantes.map((e, idx) => ({ id: idx + 1, ...e }));
-          renderizarEstudiantes();
-        }
-      } catch (err) {
-        console.error("Error sincronizando", err);
-      }
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
+      renderizarCatalogoInsignias();
       renderizarEstudiantes();
       sincronizarConDrive();
     });
